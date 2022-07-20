@@ -1,0 +1,6 @@
+module Pods_Estech_EstechTests {
+  umbrella header "Pods-Estech-EstechTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
