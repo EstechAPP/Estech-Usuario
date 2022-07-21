@@ -9,16 +9,10 @@ export const Container = styled.View`
 
 `;
 
-export const AreaBranca = styled.View`
-
-   background-color: ${({theme}) => theme.colors.white};
-   width: ${wp('100%')}px;
-`;
-
-
 export const Logo = styled.Text`
    font-size: 40px;
    font-family: 'Montserrat';
    font-weight: 300;
    
 `;
+

@@ -6,7 +6,7 @@ import {
  Logo
 } from './styles';
 
-export function SplashScreen(){
+export default function SplashScreen(){
 return (
    <Container>
     <Logo>Estech</Logo>
