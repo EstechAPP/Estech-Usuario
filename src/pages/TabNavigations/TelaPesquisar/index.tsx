@@ -1,15 +1,13 @@
 import React from 'react';
 
 import {
-  AreaBranca,
- Container,
- Logo
+ Container
 } from './styles';
 
-export default function SplashScreen(){
+export default function TelaPesquisar(){
 return (
    <Container>
-    <Logo>Estech</Logo>
+
    </Container>
   );
 }

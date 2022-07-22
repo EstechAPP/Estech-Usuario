@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 
 import {
@@ -15,6 +16,8 @@ import {
 } from "./styles";
 
 export default function TelaInicial() {
+  const navigation = useNavigation();
+
   return (
     <Container>
       <AreaLogo>
@@ -24,7 +27,7 @@ export default function TelaInicial() {
         <ViewMensagem>
           <Mensagem>Encontre serviços estéticos com facilidade</Mensagem>
         </ViewMensagem>
-        <ButtonLogin />
+        <ButtonLogin titulo="Fazer login" onPress={() => {navigation.navigate('TelaLogin')}} />
         <ViewRegistrar>
           <TextoRegistrar>
             Não possui conta? {" "}

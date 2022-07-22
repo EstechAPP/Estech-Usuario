@@ -1,9 +1,9 @@
 import React from "react";
-import { CustomInput } from "../../components/CustomInput";
-import { PrimaryButton } from "../../components/PrimaryButton";
-import FacebookSVG from '../../../assets/icons/facebook.svg';
-import GoogleSVG from '../../../assets/icons/google.svg';
-import AppleSVG from '../../../assets/icons/apple.svg';
+import { CustomInput } from "../../../components/CustomInput";
+import PrimaryButton from "../../../components/PrimaryButton";
+import FacebookSVG from '../../../../assets/icons/facebook.svg';
+import GoogleSVG from '../../../../assets/icons/google.svg';
+import AppleSVG from '../../../../assets/icons/apple.svg';
 
 import {
   Container,
@@ -25,8 +25,12 @@ import {
   TextoRegistro,
   TouchRegistro,
 } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 export default function TelaLogin() {
+
+  const navigation = useNavigation();
+
   return (
     <Container>
       <ViewTitulo>
@@ -43,7 +47,7 @@ export default function TelaLogin() {
             <TextoSenha>Esqueceu sua senha?</TextoSenha>
           </TouchSenha>
         </AreaEsqueceuSenha>
-        <PrimaryButton />
+        <PrimaryButton titulo="Fazer login" onPress={() => {navigation.navigate('TabNavigation')}} />
         <AreaLoginSocial>
           <Divisoria>
             <Divisa />

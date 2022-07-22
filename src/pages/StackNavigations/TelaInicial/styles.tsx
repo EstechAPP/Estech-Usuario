@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { PrimaryButton } from '../../components/PrimaryButton';
+import PrimaryButton from '../../../components/PrimaryButton';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -39,7 +39,7 @@ export const AreaInicio = styled.View`
 `;
 export const ViewMensagem = styled.View`
 
-    margin-bottom: ${hp('2%')}
+    margin-bottom: ${hp('2%')}px;
 
 `;
 
