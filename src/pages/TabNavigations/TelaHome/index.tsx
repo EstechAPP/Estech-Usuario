@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ComponentProps, useState } from 'react';
 import {StatusBar} from 'react-native'
 import { useTheme } from 'styled-components';
 import ButtonCategoria, { IButtonCategoria } from '../../../components/ButtonCategoria';
@@ -17,10 +17,12 @@ import {
  AreaCategorias,
  Titulo,
  AreaEstabelecimentos,
- ListaAgenda
+ ListaAgenda,
+ SubTitulo
 
 } from './styles';
 import { ListRenderItem } from 'react-native';
+import { CardEstabelecimento } from '../../../components/CardEstabelecimento';
 
 export default function TelaHome(){
 
@@ -48,8 +50,14 @@ export default function TelaHome(){
     titulo: 'Cabeleireiro'
   },]
 
+  const itensEstabelecimento =['1', '2']
+
   const renderItem: ListRenderItem<IButtonCategoria> = ({item, index}) => (
     <ButtonCategoria icone={item.icone} titulo={item.titulo} onPress={() => {}} activeOpacity={0.6} index={index} />
+  );
+
+  const renderItemEstabelecimento: ListRenderItem<ComponentProps> = ({item, index}) => (
+    <CardEstabelecimento/>
   );
 
 return (
@@ -73,7 +81,13 @@ return (
     </AreaCategorias>
     <AreaEstabelecimentos>
       <Titulo>Establecimentos populares</Titulo>
-
+      <SubTitulo>De acordo com as classificações dos usuários e sua localidade.</SubTitulo>
+      <ListaAgenda
+        data={itensEstabelecimento}
+        renderItem={renderItemEstabelecimento}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      />
     </AreaEstabelecimentos>
    </Container>
   );

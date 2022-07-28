@@ -58,14 +58,22 @@ export const Titulo = styled.Text`
 
    font-size: ${RFValue(20)}px;
    font-weight: bold;
-   font-family: 'Manrope'
+   font-family: 'Manrope';
+
+`;
+
+export const SubTitulo = styled.Text`
+
+   font-size: ${RFValue(11)}px;
+   font-family: 'Manrope';
 
 `;
 
 export const AreaEstabelecimentos = styled.View`
 
    margin-top: ${dp('5%')}px;
-   width: ${wp('85%')}px;
+   width: ${wp('100%')}px;
+   padding-left: ${wp('8%')}px;
 
 `;
 

@@ -1,5 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
+import { StatusBar } from "react-native";
+import { useTheme } from "styled-components";
 
 import {
   Container,
@@ -17,9 +19,11 @@ import {
 
 export default function TelaInicial() {
   const navigation = useNavigation();
+  const theme = useTheme();
 
   return (
     <Container>
+      <StatusBar backgroundColor={theme.colors.background_bege} barStyle={'dark-content'} />
       <AreaLogo>
         <EstechLogo>Estech</EstechLogo>
       </AreaLogo>

@@ -8,6 +8,7 @@ export const Container = styled.TouchableOpacity<IButtonCategoria>`
    align-items: center;
    flex-direction: column;
    margin-left: ${props => props.index == 0 ? wp('8%') : wp('5%')}px;
+
 `;
 
 export const AreaIcone = styled.View`
@@ -17,6 +18,7 @@ export const AreaIcone = styled.View`
     background-color: ${({theme}) => theme.colors.input_background};
     align-items: center;
     justify-content: center;
+    border-radius: 4px;
 
 
 `;
