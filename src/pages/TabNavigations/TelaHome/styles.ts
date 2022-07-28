@@ -6,9 +6,12 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { IButtonCategoria } from '../../../components/ButtonCategoria';
 
 
-export const Container = styled.View`
+export const Container = styled.ScrollView.attrs({
+   contentContainerStyle:{
+      alignItems: 'center'
+   }
+})`
    flex: 1;
-   align-items: center;
    background-color: ${({theme}) => theme.colors.background_screens};
 `;
 
@@ -81,4 +84,19 @@ export const ListaAgenda = styled(FlatList)<FlatListProps<IButtonCategoria>>`
 
    margin-left: ${wp('-8%')}px;
    margin-top: ${wp('3%')}px;
+   
+`;
+
+export const AreaProfissionais = styled.View`
+
+   width: ${wp('100%')}px;
+   padding-left: ${wp('8%')}px;
+
+`;
+
+export const AreaMapaEstabelecimentos = styled.View`
+
+   width: ${wp('100%')}px;
+   padding-left: ${wp('8%')}px;
+   margin-top: ${dp('2%')}px;
 `;

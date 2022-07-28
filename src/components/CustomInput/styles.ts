@@ -6,4 +6,6 @@ export const Input = styled.TextInput`
    height: 47px;
    background-color: ${({theme}) => theme.colors.input_background};
    padding-left: 10px;
+   border-radius: 4px;
+   
 `;

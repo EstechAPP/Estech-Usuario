@@ -18,11 +18,15 @@ import {
  Titulo,
  AreaEstabelecimentos,
  ListaAgenda,
- SubTitulo
+ SubTitulo,
+ AreaProfissionais,
+ AreaMapaEstabelecimentos,
+
 
 } from './styles';
 import { ListRenderItem } from 'react-native';
 import { CardEstabelecimento } from '../../../components/CardEstabelecimento';
+import { CardProfissional } from '../../../components/CardProfissional';
 
 export default function TelaHome(){
 
@@ -50,7 +54,7 @@ export default function TelaHome(){
     titulo: 'Cabeleireiro'
   },]
 
-  const itensEstabelecimento =['1', '2']
+  const itensEstabelecimento =['1', '2', '3']
 
   const renderItem: ListRenderItem<IButtonCategoria> = ({item, index}) => (
     <ButtonCategoria icone={item.icone} titulo={item.titulo} onPress={() => {}} activeOpacity={0.6} index={index} />
@@ -58,6 +62,10 @@ export default function TelaHome(){
 
   const renderItemEstabelecimento: ListRenderItem<ComponentProps> = ({item, index}) => (
     <CardEstabelecimento/>
+  );
+
+  const renderItemProfissinal: ListRenderItem<ComponentProps> = ({item, index}) => (
+    <CardProfissional/>
   );
 
 return (
@@ -89,6 +97,18 @@ return (
         showsHorizontalScrollIndicator={false}
       />
     </AreaEstabelecimentos>
+    <AreaProfissionais>
+      <Titulo>Profissionais populares</Titulo>
+      <ListaAgenda
+        data={itensEstabelecimento}
+        renderItem={renderItemProfissinal}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      />
+    </AreaProfissionais>
+    <AreaMapaEstabelecimentos>
+      <Titulo>Mapa dos estabelecimentos</Titulo>
+    </AreaMapaEstabelecimentos>
    </Container>
   );
 }

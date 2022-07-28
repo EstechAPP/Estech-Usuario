@@ -27,7 +27,7 @@ return (
             <TextoPontuacao>3.2</TextoPontuacao>
         </AreaPontuacao>
     </FotoEstabelecimento>
-    <TextoNomeEstabelecimento numberOfLines={1}>DON VICTOR BARBERSHOPADSASDDSA</TextoNomeEstabelecimento>
+    <TextoNomeEstabelecimento numberOfLines={1}>DON VICTOR BARBERSHOPASDSA</TextoNomeEstabelecimento>
     <AreaStatusHora>
         <ComponenteStatus>
             <PontoStatus/>
