@@ -3,6 +3,7 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { ImageProps, FlatList, FlatListProps } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as dp} from 'react-native-responsive-screen';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { IButtonCategoria } from '../../../components/ButtonCategoria';
 
 
 export const Container = styled.View`
@@ -46,7 +47,8 @@ export const FotoUsuario = styled.Image<ImageProps>`
 export const AreaCategorias = styled.View`
 
    margin-top: ${dp('5%')}px;
-   width: ${wp('85%')}px;
+   width: ${wp('100%')}px;
+   padding-left: ${wp('8%')}px;
 
 
 `;
@@ -66,7 +68,8 @@ export const AreaEstabelecimentos = styled.View`
 
 `;
 
-export const ListaAgenda = styled.ScrollView`
+export const ListaAgenda = styled(FlatList)<FlatListProps<IButtonCategoria>>`
 
-
+   margin-left: ${wp('-8%')}px;
+   margin-top: ${wp('3%')}px;
 `;

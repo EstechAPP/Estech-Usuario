@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import ButtonCategoria, { IButtonCategoria } from '../../../components/ButtonCategoria';
+import SobrancelhaSVG from '../../../../assets/icons/categorias/Sobrancelha.svg'
+import ManicureSVG from '../../../../assets/icons/categorias/Manicure.svg'
+import PedicureSVG from '../../../../assets/icons/categorias/Pedicure.svg'
+import CabeleireiroSVG from '../../../../assets/icons/categorias/Cabeleireiro.svg'
 
 import {
  Container,
@@ -13,9 +18,35 @@ import {
  ListaAgenda
 
 } from './styles';
+import { ListRenderItem } from 'react-native';
 
 export default function TelaHome(){
 
+  const itens = [{
+    id: '1',
+    icone: (<SobrancelhaSVG/>),
+    titulo: 'Sobrancelha'
+  },{
+    id: '2',
+    icone: (<ManicureSVG/>),
+    titulo: 'Manicure'
+  },{
+    id: '3',
+    icone: (<PedicureSVG/>),
+    titulo: 'Pedicure'
+  },{
+    id: '4',
+    icone: (<CabeleireiroSVG/>),
+    titulo: 'Cabeleireiro'
+  },{
+    id: '5',
+    icone: (<CabeleireiroSVG/>),
+    titulo: 'Cabeleireiro'
+  },]
+
+  const renderItem: ListRenderItem<IButtonCategoria> = ({item, index}) => (
+    <ButtonCategoria icone={item.icone} titulo={item.titulo} onPress={() => {}} activeOpacity={0.6} index={index} />
+  );
 
 return (
    <Container>
@@ -29,7 +60,10 @@ return (
     <AreaCategorias>
       <Titulo>Categorias</Titulo>
       <ListaAgenda
-        
+        data={itens}
+        renderItem={renderItem}
+        horizontal
+        showsHorizontalScrollIndicator={false}
       />
     </AreaCategorias>
     <AreaEstabelecimentos>
