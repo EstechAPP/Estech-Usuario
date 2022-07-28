@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import {StatusBar} from 'react-native'
+import { useTheme } from 'styled-components';
 
 import {
  Container,
@@ -16,9 +18,12 @@ import {
 
 export default function TelaHome(){
 
+  const theme = useTheme();
+
 
 return (
-   <Container>
+  <Container>
+     <StatusBar backgroundColor={theme.colors.background_screens} barStyle={'dark-content'} />
     <AreaHeader>
       <AreaMensagemNome>
         <TextoMensagem>Bem vindo,</TextoMensagem>

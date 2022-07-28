@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import { ImageProps, FlatList, FlatListProps } from 'react-native';
+import { ImageProps, FlatList, FlatListProps, Platform } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as dp} from 'react-native-responsive-screen';
 import { RFValue } from 'react-native-responsive-fontsize';
 
@@ -8,10 +8,11 @@ import { RFValue } from 'react-native-responsive-fontsize';
 export const Container = styled.View`
    flex: 1;
    align-items: center;
+   background-color: ${({theme}) => theme.colors.background_screens};
 `;
 
 export const AreaHeader = styled.View`
-   margin-top: ${getStatusBarHeight() + 35}px;
+   margin-top: ${Platform.OS === 'ios' ? getStatusBarHeight() + 30 : 10 }px;
    flex-direction: row;
    justify-content: space-between;
    align-items: center;

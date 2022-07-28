@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components";
 import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import IconAnt from 'react-native-vector-icons/AntDesign'
 
 //Screens Component
@@ -15,6 +16,7 @@ import TelaPerfil from '../pages/TabNavigations/TelaPerfil';
 
 
 
+
 function TabNavigation(){
   const theme = useTheme();
   const Tab = createBottomTabNavigator();
@@ -22,7 +24,7 @@ function TabNavigation(){
     const options : BottomTabNavigationOptions ={
       headerShown: false,
       tabBarStyle:{
-        backgroundColor: theme.colors.background_bege
+        backgroundColor: theme.colors.background_bege,
       },
       tabBarActiveTintColor: theme.colors.primary_color_button,
       tabBarInactiveTintColor: theme.colors.cinza_titulo,

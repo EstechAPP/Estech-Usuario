@@ -1,6 +1,7 @@
 export default{
     colors:{
         background_bege: "#F2D194",
+        background_screens: "#f5f5f5",
         white: "#FFFFFF",
         cinza_titulo: "#47474D",
         primary_color_button: "#FAC301",
