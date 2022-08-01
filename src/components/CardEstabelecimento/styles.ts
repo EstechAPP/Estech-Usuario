@@ -1,9 +1,9 @@
-import { ImageBackgroundProps } from 'react-native';
+import { ImageBackgroundProps, TouchableOpacityProps } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { heightPercentageToDP as wp, widthPercentageToDP as hp } from 'react-native-responsive-screen';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity<TouchableOpacityProps>`
    width: 189px;
    height: 189px;
    justify-content: center;

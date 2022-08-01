@@ -1,9 +1,10 @@
 import React from 'react';
-import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import { createNativeStackNavigator, NativeStackNavigationOptions,   } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components";
 import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import IconAnt from 'react-native-vector-icons/AntDesign'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 //Screens Component
 import SplashScreen from "../pages/StackNavigations/SplashScreen";
@@ -13,6 +14,10 @@ import TelaHome  from '../pages/TabNavigations/TelaHome';
 import TelaPesquisar from '../pages/TabNavigations/TelaPesquisar';
 import TelaAgenda from '../pages/TabNavigations/TelaAgenda';
 import TelaPerfil from '../pages/TabNavigations/TelaPerfil';
+import { TelaEstabelecimento } from '../pages/StackNavigations/TelaEstabelecimento';
+import { TouchableOpacity } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -64,7 +69,21 @@ function TabNavigation(){
 
 
 function RoutesNavigator() {
+    const navigation = useNavigation();
     const Stack = createNativeStackNavigator();
+    function StackOptions(): NativeStackNavigationOptions{
+      const options : NativeStackNavigationOptions = {
+        headerTransparent: true,
+        headerTitle: '',
+        headerLeft: (props) => (
+          <TouchableOpacity style={{width: 37, height: 37, backgroundColor: '#FFF', borderRadius: 18.5, alignItems: 'center', justifyContent: 'center'}} onPress={() => {navigation.goBack()}}>
+            <Icon name='chevron-left' size={RFValue(28)} />
+          </TouchableOpacity>
+        )
+      }
+      return options;
+    }
+    
   
     return (
       <Stack.Navigator>
@@ -87,6 +106,11 @@ function RoutesNavigator() {
           name="TelaHome"
           component={TelaHome}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="TelaEstabelecimento"
+          component={TelaEstabelecimento}
+          options={StackOptions()}
         />
         <Stack.Screen
           name="TabNavigation"
