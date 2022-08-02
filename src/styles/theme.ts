@@ -3,6 +3,8 @@ export default{
         background_bege: "#F2D194",
         background_screens: "#f5f5f5",
         background_cards: "#EBEBEB",
+        background_agenda: "#EFEFEF",
+        background_upload: "#615757",
         white: "#FFFFFF",
         cinza_titulo: "#47474D",
         primary_color_button: "#FAC301",

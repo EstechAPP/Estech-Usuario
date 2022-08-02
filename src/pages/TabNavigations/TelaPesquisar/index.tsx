@@ -19,6 +19,7 @@ return (
       <Titulo>Pesquisar</Titulo>
       <CustomInput style={{marginTop: 16}} placeholder='Pesquise o nome do estabelecimento' />
     </AreaHeader>
+    
    </Container>
   );
 }

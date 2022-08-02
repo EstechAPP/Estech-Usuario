@@ -1,3 +1,4 @@
+import { ActivityIndicatorProps, TextProps } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
@@ -63,10 +64,27 @@ export const TextoParte = styled.Text`
 
 
 `;
+
 export const TextoResultado = styled.Text`
 
     color: ${({theme}) => theme.colors.black};
     font-weight: bold;
     font-size: ${RFValue(16)}px;
+
+`;
+
+export const ViewLoading = styled.View`
+
+
+`;
+
+export const Loading = styled.ActivityIndicator<ActivityIndicatorProps>`
+
+`;
+
+export const TextoLoading = styled.Text<TextProps>`
+
+    font-size: ${RFValue(15)}px;
+    font-family: 'Manrope'
 
 `;
