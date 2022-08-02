@@ -18,6 +18,10 @@ import { TelaEstabelecimento } from '../pages/StackNavigations/TelaEstabelecimen
 import { TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation } from '@react-navigation/native';
+import { TelaTodosServicos } from '../pages/StackNavigations/TelaTodosServicos';
+import { Agendamento } from '../pages/StackNavigations/Agendamento';
+import { ConfirmaAgendamento } from '../pages/StackNavigations/ConfirmaAgendamento';
+import { FimAgendamento } from '../pages/StackNavigations/FimAgendamento';
 
 
 
@@ -110,6 +114,26 @@ function RoutesNavigator() {
         <Stack.Screen
           name="TelaEstabelecimento"
           component={TelaEstabelecimento}
+          options={StackOptions()}
+        />
+        <Stack.Screen
+          name="TelaTodosServicos"
+          component={TelaTodosServicos}
+          options={StackOptions()}
+        />
+        <Stack.Screen
+          name="Agendamento"
+          component={Agendamento}
+          options={StackOptions()}
+        />
+        <Stack.Screen
+          name="ConfirmaAgendamento"
+          component={ConfirmaAgendamento}
+          options={StackOptions()}
+        />
+        <Stack.Screen
+          name="FimAgendamento"
+          component={FimAgendamento}
           options={StackOptions()}
         />
         <Stack.Screen

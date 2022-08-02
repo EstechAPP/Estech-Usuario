@@ -18,9 +18,8 @@ export const Header = styled.View`
 
 `;
 
-export const BackgroundEstabelecimento = styled.View`
+export const BackgroundEstabelecimento = styled.Image`
 
-    background-color: red;
     height: ${hp('25%')}px;
     width: ${wp('100%')}px;
 
@@ -101,6 +100,51 @@ export const Titulo = styled.Text`
     font-weight: bold;
     font-family: 'Manrope';
 
+`;
+
+
+export const  AreaServicos = styled.View`
+
+
+    width: ${wp('100%')}px;
+    padding-left: ${wp('6%')}px;
+    margin-top: ${hp('3%')}px;
+
 
 `;
 
+export const ListaProfissionais = styled.FlatList`
+
+    width: ${wp('100%')}px;
+    margin-left: ${wp('-6%')}px;
+    padding-left: ${wp('6%')}px;
+    margin-top: ${hp('1%')}px;
+
+
+`;
+
+export const ListaServicos = styled.FlatList`
+
+    margin-left: ${wp('-6%')}px;
+    margin-top: ${hp('1.5%')}px;
+    height: ${hp('41%')}px;
+
+`;
+
+export const AreaTituloVerTudo = styled.View`
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: ${wp('87%')}px;
+
+`;
+export const TouchVerTudo = styled.TouchableOpacity`
+
+
+`;
+export const TextoVerTudo = styled.Text`
+
+    color: ${({theme}) => theme.colors.select_tab}
+
+`;

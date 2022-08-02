@@ -11,7 +11,7 @@ export const Container = styled.View`
    justify-content: space-between;
    align-items: center;
    border-radius: 4px;
-   margin-left: 22px;
+   margin-right: 24px;
    padding-top: 6px;
    padding-bottom: 6px;
    padding-left: 16px;
