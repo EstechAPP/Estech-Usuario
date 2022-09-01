@@ -1,5 +1,5 @@
-import React, { ComponentProps, useState } from 'react';
-import {StatusBar} from 'react-native'
+import React, { ComponentProps, useContext, useEffect, useState } from 'react';
+import {Alert, StatusBar} from 'react-native'
 import { useTheme } from 'styled-components';
 import ButtonCategoria, { IButtonCategoria } from '../../../components/ButtonCategoria';
 import SobrancelhaSVG from '../../../../assets/icons/categorias/Sobrancelha.svg'
@@ -27,37 +27,22 @@ import {
 import { ListRenderItem } from 'react-native';
 import { CardEstabelecimento } from '../../../components/CardEstabelecimento';
 import { CardProfissional } from '../../../components/CardProfissional';
+import AuthContext from '../../../context/user';
+import API from '../../../services/api';
+import { getCategorias } from '../../../services/categoria';
+import { ICategorias } from '../../../types/categorias';
 
 export default function TelaHome(){
 
   const theme = useTheme();
-
-  const itens = [{
-    id: '1',
-    icone: (<SobrancelhaSVG/>),
-    titulo: 'Sobrancelha'
-  },{
-    id: '2',
-    icone: (<ManicureSVG/>),
-    titulo: 'Manicure'
-  },{
-    id: '3',
-    icone: (<PedicureSVG/>),
-    titulo: 'Pedicure'
-  },{
-    id: '4',
-    icone: (<CabeleireiroSVG/>),
-    titulo: 'Cabeleireiro'
-  },{
-    id: '5',
-    icone: (<CabeleireiroSVG/>),
-    titulo: 'Cabeleireiro'
-  },]
+  const {userState} = useContext(AuthContext);
+  const [listaCategorias, setListaCategorias] = useState<ICategorias[]>([]);
 
   const itensEstabelecimento =['1', '2', '3']
 
-  const renderItem: ListRenderItem<IButtonCategoria> = ({item, index}) => (
-    <ButtonCategoria icone={item.icone} titulo={item.titulo} onPress={() => {}} activeOpacity={0.6} index={index} />
+
+  const renderItem: ListRenderItem<ICategorias> = ({item, index}) => (
+    <ButtonCategoria img_base64={item.img_base64} descricao={item.descricao} onPress={() => {}} activeOpacity={0.6} index={index} />
   );
 
   const renderItemEstabelecimento: ListRenderItem<ComponentProps> = ({item, index}) => (
@@ -68,20 +53,37 @@ export default function TelaHome(){
     <CardProfissional/>
   );
 
+
+  useEffect(() => {
+
+    getCategorias()
+    .then((resp) => {
+      setListaCategorias(resp.data.resultado);
+      console.log(listaCategorias)
+    })
+    .catch((err) => {
+      Alert.alert("Tivemos um problema ao carregar as categorias.")
+    })
+
+  },[])
+
+
+
 return (
   <Container>
      <StatusBar backgroundColor={theme.colors.background_screens} barStyle={'dark-content'} />
     <AreaHeader>
       <AreaMensagemNome>
         <TextoMensagem>Bem vindo,</TextoMensagem>
-        <TextoNome>Matheus Pereira</TextoNome>
+        <TextoNome>{userState.nome}</TextoNome>
       </AreaMensagemNome>
       <FotoUsuario source={{uri: 'https://i.pravatar.cc/'}}/>
     </AreaHeader>
     <AreaCategorias>
       <Titulo>Categorias</Titulo>
       <ListaAgenda
-        data={itens}
+        data={listaCategorias}
+        keyExtractor={(item) => item.id}
         renderItem={renderItem}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -106,9 +108,6 @@ return (
         showsHorizontalScrollIndicator={false}
       />
     </AreaProfissionais>
-    <AreaMapaEstabelecimentos>
-      <Titulo>Mapa dos estabelecimentos</Titulo>
-    </AreaMapaEstabelecimentos>
    </Container>
   );
 }

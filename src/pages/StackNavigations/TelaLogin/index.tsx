@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { CustomInput } from "../../../components/CustomInput";
 import PrimaryButton from "../../../components/PrimaryButton";
 import FacebookSVG from '../../../../assets/icons/facebook.svg';
@@ -26,8 +26,42 @@ import {
   TouchRegistro,
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { Login } from "../../../services/auth";
+import AuthContext from "../../../context/user";
+import { Alert } from "react-native";
 
 export default function TelaLogin() {
+
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const {userState,setUserState} = useContext(AuthContext);
+
+  function EfetuarLogin(){
+    if(email == '' || senha == ''){
+      Alert.alert('Necessário o preenchimento dos campos de email e senha para realizar o login')
+    }
+    else{
+      Login(email, senha)
+      .then(response =>{
+        setUserState(response.data.usuario);
+        setEmail('');
+        setSenha('');
+        navigation.navigate('TabNavigation');
+      })
+      .catch(err => {
+        if(err.response){
+          if(err.response.status === 401)
+              Alert.alert('Login ou senha incorretos, verifique suas credenciais e tente novamente.')
+          }
+          if (err.response.status === 500) {
+            Alert.alert('Tivemos um problema em processar sua autenticação, tente novamente mais tarde.')
+          }
+          else{
+            Alert.alert('Não foi possível realizar seu login, verifique sua conexão e tente novamente.')
+          }
+      })
+    }
+  }
 
   const navigation = useNavigation();
 
@@ -40,15 +74,15 @@ export default function TelaLogin() {
         <TextoLabel>
           Efetue login com seu email ou rede social vinculada
         </TextoLabel>
-        <CustomInput style={{ marginTop: 34 }} placeholder="Informe seu e-mail" />
-        <CustomInput style={{ marginTop: 34 }} placeholder="sua senha" secureTextEntry />
+        <CustomInput style={{ marginTop: 34 }} value={email} onChangeText={(value) => setEmail(value)} placeholder="Informe seu e-mail" />
+        <CustomInput style={{ marginTop: 34 }} value={senha} onChangeText={(value) => setSenha(value)} placeholder="sua senha" secureTextEntry />
         <AreaEsqueceuSenha>
           <TouchSenha>
             <TextoSenha>Esqueceu sua senha?</TextoSenha>
           </TouchSenha>
         </AreaEsqueceuSenha>
-        <PrimaryButton titulo="Fazer login" onPress={() => {navigation.navigate('TabNavigation')}} />
-        <AreaLoginSocial>
+        <PrimaryButton titulo="Fazer login" onPress={() => {EfetuarLogin()}} />
+        {/* <AreaLoginSocial>
           <Divisoria>
             <Divisa />
             <TextoDivisa>ou logue com</TextoDivisa>
@@ -65,12 +99,12 @@ export default function TelaLogin() {
               <AppleSVG/>
             </ContainerBotao>
           </AreaBotoesSociais>
-        </AreaLoginSocial>
+        </AreaLoginSocial> */}
         <AreaRegistrar>
           <TextoRegistrar>
             Não possui conta?
           </TextoRegistrar>
-          <TouchRegistro>
+          <TouchRegistro onPress={() => navigation.navigate('RegistroInicial')} >
             <TextoRegistro>
               {" "}Registre-se aqui
             </TextoRegistro>

@@ -36,7 +36,7 @@ export default function TelaInicial() {
           <TextoRegistrar>
             Não possui conta? {" "}
           </TextoRegistrar>
-            <TouchRegistrar>
+            <TouchRegistrar onPress={() => {navigation.navigate('RegistroInicial')}}>
               <TextoTouch>Registre-se aqui</TextoTouch>
             </TouchRegistrar>
         </ViewRegistrar>

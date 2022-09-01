@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useTheme } from 'styled-components';
+import AuthContext from '../../../context/user';
 
 import {
  Container,
@@ -19,6 +20,7 @@ import {
 
 export default function TelaPerfil(){
   const theme = useTheme();
+  const {userState} = useContext(AuthContext)
 
 return (
    <Container>
@@ -31,7 +33,7 @@ return (
       </AreaFoto>
       <AreaNomeData>
         <AreaNome>
-          <TextoNome>Matheus Henrique Carvalho Pereira</TextoNome>
+          <TextoNome>{userState.nome}</TextoNome>
         </AreaNome>
         <AreaData>
           <TextoData>
@@ -43,7 +45,6 @@ return (
         </AreaData>
       </AreaNomeData>
     </AreaPerfil>
-
    </Container>
   );
-}
+}0

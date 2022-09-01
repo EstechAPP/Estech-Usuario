@@ -1,3 +1,4 @@
+import { ImageProps } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import styled from 'styled-components/native';
 import { IButtonCategoria } from '.';
@@ -19,9 +20,13 @@ export const AreaIcone = styled.View`
     align-items: center;
     justify-content: center;
     border-radius: 4px;
-
-
 `;
+
+export const ImagemIcone = styled.Image<ImageProps>`
+    width: 42px;
+    height: 42px;
+`;
+
 export const Titulo = styled.Text`
 
     font-size: 12px;

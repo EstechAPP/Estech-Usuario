@@ -22,6 +22,8 @@ import { TelaTodosServicos } from '../pages/StackNavigations/TelaTodosServicos';
 import { Agendamento } from '../pages/StackNavigations/Agendamento';
 import { ConfirmaAgendamento } from '../pages/StackNavigations/ConfirmaAgendamento';
 import { FimAgendamento } from '../pages/StackNavigations/FimAgendamento';
+import { RegistroInicial } from '../pages/StackNavigations/Registros/RegistroInicial';
+import { RegistroEndereco } from '../pages/StackNavigations/Registros/RegistroEndereco';
 
 
 
@@ -140,6 +142,16 @@ function RoutesNavigator() {
           name="TabNavigation"
           component={TabNavigation}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="RegistroInicial"
+          component={RegistroInicial}
+          options={StackOptions()}
+        />
+        <Stack.Screen
+          name="RegistroEndereco"
+          component={RegistroEndereco}
+          options={StackOptions()}
         />
       </Stack.Navigator>
     );
