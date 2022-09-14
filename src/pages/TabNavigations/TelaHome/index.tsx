@@ -28,43 +28,48 @@ import { ListRenderItem } from 'react-native';
 import { CardEstabelecimento } from '../../../components/CardEstabelecimento';
 import { CardProfissional } from '../../../components/CardProfissional';
 import AuthContext from '../../../context/user';
-import API from '../../../services/api';
 import { getCategorias } from '../../../services/categoria';
 import { ICategorias } from '../../../types/categorias';
+import axios from 'axios';
+import { getEmpresasCEP } from '../../../services/empresa';
+import { IEmpresa } from '../../../types/empresa';
 
 export default function TelaHome(){
 
   const theme = useTheme();
   const {userState} = useContext(AuthContext);
   const [listaCategorias, setListaCategorias] = useState<ICategorias[]>([]);
-
-  const itensEstabelecimento =['1', '2', '3']
-
+  const [listaEstabelecimentos, setListaEstabelecimentos] = useState<IEmpresa[]>([]);
 
   const renderItem: ListRenderItem<ICategorias> = ({item, index}) => (
     <ButtonCategoria img_base64={item.img_base64} descricao={item.descricao} onPress={() => {}} activeOpacity={0.6} index={index} />
   );
 
-  const renderItemEstabelecimento: ListRenderItem<ComponentProps> = ({item, index}) => (
-    <CardEstabelecimento/>
+  const renderItemEstabelecimento: ListRenderItem<IEmpresa> = ({item, index}) => (
+    <CardEstabelecimento dados={item} />
   );
 
   const renderItemProfissinal: ListRenderItem<ComponentProps> = ({item, index}) => (
     <CardProfissional/>
   );
 
+    const requisicaoum = getCategorias();
+    const requisicaodois = getEmpresasCEP(userState.cep);
 
   useEffect(() => {
 
-    getCategorias()
-    .then((resp) => {
-      setListaCategorias(resp.data.resultado);
-      console.log(listaCategorias)
+    axios.all([requisicaoum, requisicaodois])
+    .then(
+      axios.spread((...responses) => {
+        const responseum = responses[0].data.resultado;
+        const responsedois = responses[1].data.resultado;
+        setListaCategorias(responseum)
+        setListaEstabelecimentos(responsedois)
+      })
+    )
+    .catch(errors => {
+      console.error(errors);
     })
-    .catch((err) => {
-      Alert.alert("Tivemos um problema ao carregar as categorias.")
-    })
-
   },[])
 
 
@@ -75,7 +80,7 @@ return (
     <AreaHeader>
       <AreaMensagemNome>
         <TextoMensagem>Bem vindo,</TextoMensagem>
-        <TextoNome>{userState.nome}</TextoNome>
+        <TextoNome>{userState.nome} {userState.sobrenome}</TextoNome>
       </AreaMensagemNome>
       <FotoUsuario source={{uri: 'https://i.pravatar.cc/'}}/>
     </AreaHeader>
@@ -90,10 +95,10 @@ return (
       />
     </AreaCategorias>
     <AreaEstabelecimentos>
-      <Titulo>Establecimentos populares</Titulo>
-      <SubTitulo>De acordo com as classificações dos usuários e sua localidade.</SubTitulo>
+      <Titulo>Estabelecimentos próximos</Titulo>
+      <SubTitulo>De acordo com sua localização</SubTitulo>
       <ListaAgenda
-        data={itensEstabelecimento}
+        data={listaEstabelecimentos}
         renderItem={renderItemEstabelecimento}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -102,7 +107,7 @@ return (
     <AreaProfissionais>
       <Titulo>Profissionais populares</Titulo>
       <ListaAgenda
-        data={itensEstabelecimento}
+        data={listaEstabelecimentos}
         renderItem={renderItemProfissinal}
         horizontal
         showsHorizontalScrollIndicator={false}

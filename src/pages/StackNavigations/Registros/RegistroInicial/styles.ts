@@ -2,6 +2,7 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import styled from 'styled-components/native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export const Container = styled.View`
    flex: 1;
@@ -25,15 +26,17 @@ export const TextoTitulo = styled.Text`
   font-size: ${RFValue(22)}px;
 
 `;
-export const AreaLogin = styled.View`
-
+export const AreaLogin = styled(KeyboardAwareScrollView).attrs({
+   contentContainerStyle: {
+      alignItems: 'center'
+   }
+})`
   width: ${wp('100%')}px;
   height: ${hp('80%')}px;
   background-color: ${({theme}) => theme.colors.white};
-  align-items: center;
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
-  padding-top: 43px;
+  padding-top: 25px;
 
 `;
 export const ViewCampo = styled.View`
@@ -46,7 +49,7 @@ export const ViewButton = styled.View`
 
    width: ${wp('100%')}px;
    align-items: center;
-   margin-top: ${hp('5%')}px;
+   margin-top: ${hp('2%')}px;
    height: ${hp('9%')}px;
 
 `;

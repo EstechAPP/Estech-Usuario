@@ -148,11 +148,6 @@ function RoutesNavigator() {
           component={RegistroInicial}
           options={StackOptions()}
         />
-        <Stack.Screen
-          name="RegistroEndereco"
-          component={RegistroEndereco}
-          options={StackOptions()}
-        />
       </Stack.Navigator>
     );
   }

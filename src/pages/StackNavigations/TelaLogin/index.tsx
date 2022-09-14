@@ -32,8 +32,8 @@ import { Alert } from "react-native";
 
 export default function TelaLogin() {
 
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState('Testeiphone@teste.com');
+  const [senha, setSenha] = useState('Teste123');
   const {userState,setUserState} = useContext(AuthContext);
 
   function EfetuarLogin(){
@@ -46,7 +46,10 @@ export default function TelaLogin() {
         setUserState(response.data.usuario);
         setEmail('');
         setSenha('');
-        navigation.navigate('TabNavigation');
+        navigation.reset({
+          index: 0,
+          routes:[{name: 'TabNavigation'}]
+      })
       })
       .catch(err => {
         if(err.response){

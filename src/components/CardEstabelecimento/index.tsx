@@ -18,8 +18,9 @@ import {
 import EstrelaSVG from '../../../assets/icons/estrela.svg';
 import DespertadorSVG from '../../../assets/icons/despertador.svg';
 import { useNavigation } from '@react-navigation/native';
+import { IEmpresa, IEmpresaCard } from '../../types/empresa';
 
-export function CardEstabelecimento(){
+export function CardEstabelecimento({dados} : IEmpresaCard){
     const navigation = useNavigation();
 
 return (
@@ -30,7 +31,7 @@ return (
             <TextoPontuacao>3.2</TextoPontuacao>
         </AreaPontuacao>
     </FotoEstabelecimento>
-    <TextoNomeEstabelecimento numberOfLines={1}>DON VICTOR BARBERSHOP</TextoNomeEstabelecimento>
+    <TextoNomeEstabelecimento numberOfLines={1}>{dados.nomefantasia}</TextoNomeEstabelecimento>
     <AreaStatusHora>
         <ComponenteStatus>
             <PontoStatus/>
@@ -38,7 +39,7 @@ return (
         </ComponenteStatus>
         <ComponenteHorario>
             <DespertadorSVG/>
-            <TextoHorario>08:00 as 18:00</TextoHorario>
+            <TextoHorario>{dados.horasFuncionamentoInicio} as {dados.horasFuncionamentoFim}</TextoHorario>
         </ComponenteHorario>
     </AreaStatusHora>
    </Container>

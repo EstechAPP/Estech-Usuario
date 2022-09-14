@@ -1,8 +1,11 @@
 import axios from "axios";
 
-const API = axios.create({
+export const API = axios.create({
     baseURL: "http://estechtestes-001-site1.ctempurl.com/"
 })
 
+export const APIViaCEP = axios.create({
+    baseURL: "https://viacep.com.br/ws/"
+})
 
-export default API;
+

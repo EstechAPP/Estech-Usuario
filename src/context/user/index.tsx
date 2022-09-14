@@ -5,12 +5,16 @@ const Default_Value = {
     userState: {
         id: 0,
         nome: "",
+        sobrenome: "",
         email: "",
         celular: "",
         cep: "",
         uf: "",
         cidade: "",
-        idTipoUsuario: 0
+        imgPerfil_base64: "",
+        tipos_Usuarioid: 0,
+        donoEmpresa: 0,
+        funcionarioEmpresa: 0
     },
     setUserState: () => {}
 };
