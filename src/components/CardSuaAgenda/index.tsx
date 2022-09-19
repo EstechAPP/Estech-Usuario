@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { IAgendamento } from '../../types/agenda';
 import {
  Container,
  LogoEstabelecimento,
@@ -16,29 +16,32 @@ import {
  TextoHorario,
 } from './styles';
 
-export function CardSuaAgenda(){
+import moment from 'moment';
+
+
+export function CardSuaAgenda({dados} : {dados: IAgendamento}){
 return (
    <Container>
     <LogoEstabelecimento source={require("../../../assets/fotobarbearia.png")}  />
     <AreaInfo>
         <AreaNome>
-            <TextoNome numberOfLines={1}>Hugo Barbearia Hugo Barbearia Hugo Barbearia Hugo Barbearia </TextoNome>
+            <TextoNome numberOfLines={1}>{dados.nomeFantasiaEmpresa}</TextoNome>
         </AreaNome>
         <AreaServico>
-            <TextoServico numberOfLines={2}>Corte Degradê / Barba / Sobrancelha / Teste / Navalhado / Depilação / Navalhado / Depilação</TextoServico>
+            <TextoServico numberOfLines={2}>{dados.nomeServico}</TextoServico>
         </AreaServico>
         <AreaPreco>
             <TextoPreco>
                 Total:
             </TextoPreco>
             <TextoValor>
-                R$ 120,00
+                R$ {dados.valorServico}
             </TextoValor>
         </AreaPreco>
     </AreaInfo>
     <AreaDataAgendamento>
-        <TextoData>01/Set</TextoData>
-        <TextoHorario>09:00</TextoHorario>
+        <TextoData>{moment(dados.dataAgendamento).format('DD/MMM')}</TextoData>
+        <TextoHorario>{moment(dados.dataAgendamento).format('HH:mm')}</TextoHorario>
     </AreaDataAgendamento>
    </Container>
   );
