@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { IServico } from '../../types/servico';
 
 import {
  Container,
@@ -11,7 +12,7 @@ import {
  TextoPreco,
 } from './styles';
 
-export function CardServicos(){
+export function CardServicos({data} : {data : IServico}){
 
     const navigation = useNavigation();
 
@@ -20,14 +21,14 @@ return (
     <ImagemServico source={require("../../../assets/fotobarbearia.png")} />
     <AreaNomePreco>
         <TextoNome numberOfLines={2}>
-            Corte Degradê / Barba / Sobrancelha / Teste / Teste / Sobrancelha / Teste
+            {data.descricao}
         </TextoNome>
         <AreaMediaPreco>
             <TextoDuracao>
-                Duração média do serviço: 01:20
+                Duração média do serviço: {data.tempomedio}
             </TextoDuracao>
             <TextoPreco>
-                R$ 40,00
+                {data.preco.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
             </TextoPreco>
         </AreaMediaPreco>
     </AreaNomePreco>

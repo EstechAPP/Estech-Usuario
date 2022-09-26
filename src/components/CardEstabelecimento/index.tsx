@@ -18,13 +18,32 @@ import {
 import EstrelaSVG from '../../../assets/icons/estrela.svg';
 import DespertadorSVG from '../../../assets/icons/despertador.svg';
 import { useNavigation } from '@react-navigation/native';
-import { IEmpresa, IEmpresaCard } from '../../types/empresa';
+import { IEmpresaCard } from '../../types/empresa';
+import { useTheme } from 'styled-components';
+import moment from 'moment';
 
 export function CardEstabelecimento({dados} : IEmpresaCard){
     const navigation = useNavigation();
+    const theme = useTheme();
+
+    function openClosed(){
+        const dataHoje = new Date();
+        const dataInicioSplit = dados.horasFuncionamentoInicio.split(':');
+        const dataFimSplit = dados.horasFuncionamentoFim.split(':');
+
+        const dataInicioTratado = new Date(dataHoje.getFullYear(), dataHoje.getMonth(), dataHoje.getDate(), Number(dataInicioSplit[0]), Number(dataInicioSplit[1]), 0)
+        const dataFimTratado = new Date(dataHoje.getFullYear(), dataHoje.getMonth(), dataHoje.getDate(), Number(dataFimSplit[0]), Number(dataFimSplit[1]), 0)
+
+        if(moment(dataHoje).isAfter(dataInicioTratado) && moment(dataHoje).isBefore(dataFimTratado)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 return (
-   <Container onPress={() => {navigation.navigate('TelaEstabelecimento')}}>
+   <Container onPress={() => {navigation.navigate('TelaEstabelecimento', {idEmpresa: dados.id})}}>
     <FotoEstabelecimento source={require("../../../assets/fotobarbearia.png")}>
         <AreaPontuacao>
             <EstrelaSVG/>
@@ -33,10 +52,17 @@ return (
     </FotoEstabelecimento>
     <TextoNomeEstabelecimento numberOfLines={1}>{dados.nomefantasia}</TextoNomeEstabelecimento>
     <AreaStatusHora>
-        <ComponenteStatus>
-            <PontoStatus/>
-            <TextoStatus>Fechado</TextoStatus>
-        </ComponenteStatus>
+        {openClosed() ? (
+            <ComponenteStatus>
+                <PontoStatus color={theme.colors.verde_open}/>
+                <TextoStatus>Aberto</TextoStatus>
+            </ComponenteStatus>
+        ) : (
+            <ComponenteStatus>
+                <PontoStatus color={theme.colors.vermelho_closed}/>
+                <TextoStatus>Fechado</TextoStatus>
+            </ComponenteStatus>
+        )}
         <ComponenteHorario>
             <DespertadorSVG/>
             <TextoHorario>{dados.horasFuncionamentoInicio} as {dados.horasFuncionamentoFim}</TextoHorario>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { IUser } from '../../types/user';
 
 import {
  Container,
@@ -8,13 +9,12 @@ import {
  CargoProfissional,
 } from './styles';
 
-export function CardProfissional(){
+export function CardProfissional({data} : {data : IUser}){
 return (
    <Container>
         <FotoProfissional source={require("../../../assets/fotobarbearia.png")}  />
         <AreaNomeCargo>
-            <NomeProfissional>Wesley Santos</NomeProfissional>
-            <CargoProfissional>Cabeleireiro</CargoProfissional>
+            <NomeProfissional>{data.nome} {data.sobrenome}</NomeProfissional>
         </AreaNomeCargo>
    </Container>
   );

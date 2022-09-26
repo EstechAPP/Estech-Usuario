@@ -55,7 +55,7 @@ export const PontoStatus = styled.View`
 
     width: 8px;
     height: 8px;
-    background-color: ${({theme}) => theme.colors.verde_open};
+    background-color: ${({color}) => color};
     border-radius: 4px;
     margin-right: 6px;
 

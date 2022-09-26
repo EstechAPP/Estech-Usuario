@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
  Container,
@@ -28,26 +28,85 @@ import DespertadorSVG from '../../../../assets/icons/despertador.svg'
 import { CardProfissional } from '../../../components/CardProfissional';
 import { CardServicos } from '../../../components/CardServicos';
 import { useNavigation } from '@react-navigation/native';
+import { getDadosEmpresa, getFuncionariosEmpresa } from '../../../services/empresa';
+import axios from 'axios';
+import { getServicosEmpresa } from '../../../services/servicos';
+import { IServico } from '../../../types/servico';
+import { IEmpresa } from '../../../types/empresa';
+import moment from 'moment';
+import { useTheme } from 'styled-components';
+import { IUser } from '../../../types/user';
 
-export function TelaEstabelecimento(){
+export function TelaEstabelecimento({route}){
 
-    const dados = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const {idEmpresa} = route.params;
     const navigation = useNavigation();
+    const theme = useTheme();
+
+    const requisicaoum = getDadosEmpresa(idEmpresa);
+    const requisicaodois = getServicosEmpresa(idEmpresa);
+    const requisicaoTres = getFuncionariosEmpresa(idEmpresa);
+
+    const [dadosEmpresa, setDadosEmpresa] = useState<IEmpresa>();
+    const [listaServicos, setListaServicos] = useState<IServico[]>([]);
+    const [listaFuncionarios, setListaFuncionarios] = useState<IUser[]>([]);
+
+    function openClosed(){
+        const dataHoje = new Date();
+        const dataInicioPadrao = "08:00"
+        const dataFimPadrao = "20:00"
+        const dataInicioSplit = dadosEmpresa ? dadosEmpresa.horasFuncionamentoInicio.split(':') : dataInicioPadrao.split(':');
+        const dataFimSplit = dadosEmpresa ? dadosEmpresa.horasFuncionamentoFim.split(':') : dataFimPadrao.split(':');
+
+        const dataInicioTratado = new Date(dataHoje.getFullYear(), dataHoje.getMonth(), dataHoje.getDate(), Number(dataInicioSplit[0]), Number(dataInicioSplit[1]), 0)
+        const dataFimTratado = new Date(dataHoje.getFullYear(), dataHoje.getMonth(), dataHoje.getDate(), Number(dataFimSplit[0]), Number(dataFimSplit[1]), 0)
+
+        if(moment(dataHoje).isAfter(dataInicioTratado) && moment(dataHoje).isBefore(dataFimTratado)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    useEffect(() => {
+        axios.all([requisicaoum, requisicaodois, requisicaoTres])
+        .then(
+          axios.spread((...responses) => {
+            const responseum = responses[0].data.resultado;
+            const responsedois = responses[1].data.resultado;
+            const responsetres = responses[2].data.resultado;
+            setDadosEmpresa(responseum)
+            setListaServicos(responsedois)
+            setListaFuncionarios(responsetres)
+          })
+        )
+        .catch(errors => {
+          console.error(errors);
+        })
+    }, [])
 
 return (
    <Container>
     <BackgroundEstabelecimento source={require("../../../../assets/fotobarbearia.png")}/>
     <Header>
         <FotoEstabelecimento source={require("../../../../assets/fotobarbearia.png")}/>
-        <NomeEstabelecimento>Hugo Barbearia</NomeEstabelecimento>
+        <NomeEstabelecimento>{dadosEmpresa?.nomefantasia}</NomeEstabelecimento>
         <AreaStatusHora>
+{            openClosed() ? (
             <ComponenteStatus>
-                <PontoStatus/>
+                <PontoStatus color={theme.colors.verde_open} />
                 <TextoStatus>Aberto</TextoStatus>
             </ComponenteStatus>
+): (
+            <ComponenteStatus>
+                <PontoStatus color={theme.colors.vermelho_closed} />
+                <TextoStatus>Fechado</TextoStatus>
+            </ComponenteStatus>
+)}
             <ComponenteHorario>
                 <DespertadorSVG/>
-                <TextoHorario>08:00 as 18:00</TextoHorario>
+                <TextoHorario>{dadosEmpresa?.horasFuncionamentoInicio} as {dadosEmpresa?.horasFuncionamentoFim}</TextoHorario>
             </ComponenteHorario>
         </AreaStatusHora>
     </Header>
@@ -55,9 +114,9 @@ return (
     <AreaProfissionais>
         <Titulo>Profissionais</Titulo>
         <ListaProfissionais
-        data={dados}
-        renderItem={() => 
-            <CardProfissional/>
+        data={listaFuncionarios}
+        renderItem={({item}) => 
+            <CardProfissional data={item}/>
         }
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -72,9 +131,9 @@ return (
             </TouchVerTudo>
         </AreaTituloVerTudo>
         <ListaServicos
-        data={dados}
-        renderItem={() => 
-            <CardServicos/>
+        data={listaServicos}
+        renderItem={({item}) => 
+            <CardServicos data={item} />
         }
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{alignItems: 'center'}}

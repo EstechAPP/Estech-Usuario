@@ -49,9 +49,9 @@ export default function TelaHome(){
     <CardEstabelecimento dados={item} />
   );
 
-  const renderItemProfissinal: ListRenderItem<ComponentProps> = ({item, index}) => (
-    <CardProfissional/>
-  );
+  // const renderItemProfissinal: ListRenderItem<ComponentProps> = ({item, index}) => (
+  //   <CardProfissional/>
+  // );
 
     const requisicaoum = getCategorias();
     const requisicaodois = getEmpresasCEP(userState.cep);
@@ -106,12 +106,12 @@ return (
     </AreaEstabelecimentos>
     <AreaProfissionais>
       <Titulo>Profissionais populares</Titulo>
-      <ListaAgenda
+      {/* <ListaAgenda
         data={listaEstabelecimentos}
         renderItem={renderItemProfissinal}
         horizontal
         showsHorizontalScrollIndicator={false}
-      />
+      /> */}
     </AreaProfissionais>
    </Container>
   );
