@@ -1,19 +1,7 @@
-import { TouchableOpacityProps } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-export const Container = styled.TouchableOpacity<TouchableOpacityProps>`
-   width: 298px;
-   height: 53px;
-   background-color: ${({theme}) => theme.colors.background_cards};
-   margin-bottom: 14px;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-evenly;
-   border-radius: 5px;
-`;
-
-export const ContainerView = styled.View`
+export const Container = styled.View`
    width: 298px;
    height: 53px;
    background-color: ${({theme}) => theme.colors.background_cards};

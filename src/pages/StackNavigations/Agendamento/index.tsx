@@ -1,9 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect}from 'react';
 import { Calendar } from 'react-native-calendars';
 import { CardProfissional } from '../../../components/CardProfissional';
+import { CardServicosAgendamento } from '../../../components/CardServicoAgendamento';
 import { CardServicos } from '../../../components/CardServicos';
 import PrimaryButton from '../../../components/PrimaryButton';
+import { API } from '../../../services/api';
+import { IEmpresa } from '../../../types/empresa';
 import { Titulo } from '../TelaEstabelecimento/styles';
 
 import {
@@ -29,32 +32,40 @@ import {
 
 } from './styles';
 
-export function Agendamento(){
-
+export function Agendamento({route}){
+  const {servicoSelecionado} = route.params;
+  const {dadosEmpresa} : {dadosEmpresa : IEmpresa} = route.params;
   const dados = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   const navigation = useNavigation();
+
+
+  useEffect(() => {
+    
+  
+  }, [])
+  
 
 return (
    <Container>
     <AreaTituloTela>
       <TituloAgendamento>Agendamento</TituloAgendamento>
-      <TituloEstabelecimento>Hugo Barbearia</TituloEstabelecimento>
+      <TituloEstabelecimento>{dadosEmpresa.nomefantasia}</TituloEstabelecimento>
     </AreaTituloTela>
     <AreaBranca>
       <AreaServico>
         <TituloServico>Serviço escolhido</TituloServico>
-        <CardServicos/>
+        <CardServicosAgendamento data={servicoSelecionado}/>
       </AreaServico>
       <AreaProfissional>
         <TituloEscolha>Escolha o profissional</TituloEscolha>
-        <ListaProfissionais
+        {/* <ListaProfissionais
           data={dados}
           renderItem={() => 
             <CardProfissional/>
           }
           horizontal
           showsHorizontalScrollIndicator={false}
-        />
+        /> */}
       </AreaProfissional>
       <AreaCalendario>
         <TituloData>Escolha a data</TituloData>
