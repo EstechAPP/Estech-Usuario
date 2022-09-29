@@ -33,7 +33,7 @@ import { Alert } from "react-native";
 export default function TelaLogin() {
 
   const [email, setEmail] = useState('teste@teste.com');
-  const [senha, setSenha] = useState('teste');
+  const [senha, setSenha] = useState('123123');
   const {userState,setUserState} = useContext(AuthContext);
 
   function EfetuarLogin(){

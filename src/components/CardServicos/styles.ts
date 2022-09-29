@@ -13,6 +13,17 @@ export const Container = styled.TouchableOpacity<TouchableOpacityProps>`
    border-radius: 5px;
 `;
 
+export const ContainerView = styled.View`
+   width: 298px;
+   height: 53px;
+   background-color: ${({theme}) => theme.colors.background_cards};
+   margin-bottom: 14px;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-evenly;
+   border-radius: 5px;
+`;
+
 export const ImagemServico = styled.Image`
 
     width: 40px;

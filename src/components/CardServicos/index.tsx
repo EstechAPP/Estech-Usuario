@@ -10,6 +10,7 @@ import {
  AreaMediaPreco,
  TextoDuracao,
  TextoPreco,
+ ContainerView,
 } from './styles';
 
 export function CardServicos({data} : {data : IServico}){
@@ -17,7 +18,7 @@ export function CardServicos({data} : {data : IServico}){
     const navigation = useNavigation();
 
 return (
-   <Container onPress={() => navigation.navigate('Agendamento')} >
+   <Container onPress={() => navigation.navigate('Agendamento', {servico: data})} >
     <ImagemServico source={require("../../../assets/fotobarbearia.png")} />
     <AreaNomePreco>
         <TextoNome numberOfLines={2}>
@@ -33,5 +34,27 @@ return (
         </AreaMediaPreco>
     </AreaNomePreco>
    </Container>
+  );
+}
+
+export function CardServicoPreview({data} : {data : IServico}){
+
+return (
+   <ContainerView>
+    <ImagemServico source={require("../../../assets/fotobarbearia.png")} />
+    <AreaNomePreco>
+        <TextoNome numberOfLines={2}>
+        {data.descricao}
+        </TextoNome>
+        <AreaMediaPreco>
+            <TextoDuracao>
+                Duração média do serviço: {data.tempomedio}
+            </TextoDuracao>
+            <TextoPreco>
+                {data.preco.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
+            </TextoPreco>
+        </AreaMediaPreco>
+    </AreaNomePreco>
+   </ContainerView>
   );
 }

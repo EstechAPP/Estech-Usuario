@@ -43,6 +43,7 @@ export function TelaEstabelecimento({route}){
     const navigation = useNavigation();
     const theme = useTheme();
 
+
     const requisicaoum = getDadosEmpresa(idEmpresa);
     const requisicaodois = getServicosEmpresa(idEmpresa);
     const requisicaoTres = getFuncionariosEmpresa(idEmpresa);
@@ -88,9 +89,9 @@ export function TelaEstabelecimento({route}){
 
 return (
    <Container>
-    <BackgroundEstabelecimento source={require("../../../../assets/fotobarbearia.png")}/>
+    <BackgroundEstabelecimento source={{uri: dadosEmpresa?.capaEmp}}/>
     <Header>
-        <FotoEstabelecimento source={require("../../../../assets/fotobarbearia.png")}/>
+        <FotoEstabelecimento source={{uri: dadosEmpresa?.logoEmp}}/>
         <NomeEstabelecimento>{dadosEmpresa?.nomefantasia}</NomeEstabelecimento>
         <AreaStatusHora>
 {            openClosed() ? (

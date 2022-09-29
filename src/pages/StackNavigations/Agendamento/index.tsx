@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Calendar } from 'react-native-calendars';
 import { CardProfissional } from '../../../components/CardProfissional';
-import { CardServicos } from '../../../components/CardServicos';
+import { CardServicoPreview, CardServicos } from '../../../components/CardServicos';
 import PrimaryButton from '../../../components/PrimaryButton';
 import { Titulo } from '../TelaEstabelecimento/styles';
 
@@ -29,11 +29,12 @@ import {
 
 } from './styles';
 
-export function Agendamento(){
-
+export function Agendamento({route}){
+  const {servico} = route.params;
   const dados = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const 
   const navigation = useNavigation();
-
+  console.log(servico)
 return (
    <Container>
     <AreaTituloTela>
@@ -43,18 +44,18 @@ return (
     <AreaBranca>
       <AreaServico>
         <TituloServico>Serviço escolhido</TituloServico>
-        <CardServicos/>
+        <CardServicoPreview data={servico}/>
       </AreaServico>
       <AreaProfissional>
         <TituloEscolha>Escolha o profissional</TituloEscolha>
-        <ListaProfissionais
+        {/* <ListaProfissionais
           data={dados}
           renderItem={() => 
             <CardProfissional/>
           }
           horizontal
           showsHorizontalScrollIndicator={false}
-        />
+        /> */}
       </AreaProfissional>
       <AreaCalendario>
         <TituloData>Escolha a data</TituloData>

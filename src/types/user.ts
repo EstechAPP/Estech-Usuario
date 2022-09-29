@@ -8,6 +8,7 @@ export interface IUser{
     uf: string;
     cidade: string;
     imgPerfil_base64: string;
+    dataCadastro: string;
     tipos_Usuarioid: number;
     donoEmpresa: number;
     funcionarioEmpresa: number;

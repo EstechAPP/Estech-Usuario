@@ -25,7 +25,7 @@ import moment from 'moment';
 export function CardEstabelecimento({dados} : IEmpresaCard){
     const navigation = useNavigation();
     const theme = useTheme();
-
+    
     function openClosed(){
         const dataHoje = new Date();
         const dataInicioSplit = dados.horasFuncionamentoInicio.split(':');
@@ -44,7 +44,7 @@ export function CardEstabelecimento({dados} : IEmpresaCard){
 
 return (
    <Container onPress={() => {navigation.navigate('TelaEstabelecimento', {idEmpresa: dados.id})}}>
-    <FotoEstabelecimento source={require("../../../assets/fotobarbearia.png")}>
+    <FotoEstabelecimento source={{uri: dados.capaEmp}}>
         <AreaPontuacao>
             <EstrelaSVG/>
             <TextoPontuacao>3.2</TextoPontuacao>

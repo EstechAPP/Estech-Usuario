@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import { ImageProps, FlatList, FlatListProps, Platform } from 'react-native';
+import { ImageProps, FlatList, FlatListProps, Platform, TextProps } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as dp} from 'react-native-responsive-screen';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { IButtonCategoria } from '../../../components/ButtonCategoria';
@@ -32,7 +32,7 @@ export const TextoMensagem = styled.Text`
    font-size: ${RFValue(14)}px;
 
 `;
-export const TextoNome = styled.Text`
+export const TextoNome = styled.Text<TextProps>`
 
    font-family: "Manrope";
    font-size: ${RFValue(22)}px;

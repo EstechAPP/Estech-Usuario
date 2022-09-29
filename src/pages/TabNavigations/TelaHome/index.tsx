@@ -80,9 +80,14 @@ return (
     <AreaHeader>
       <AreaMensagemNome>
         <TextoMensagem>Bem vindo,</TextoMensagem>
-        <TextoNome>{userState.nome} {userState.sobrenome}</TextoNome>
+        <TextoNome numberOfLines={1} >{userState.nome} {userState.sobrenome}</TextoNome>
       </AreaMensagemNome>
-      <FotoUsuario source={{uri: 'https://i.pravatar.cc/'}}/>
+      {userState.imgPerfil_base64 ? (
+        <FotoUsuario source={{uri: userState.imgPerfil_base64}} />
+      )
+    : (
+        <FotoUsuario source={require('../../../../assets/no-profile-icon.png')} />
+    )}
     </AreaHeader>
     <AreaCategorias>
       <Titulo>Categorias</Titulo>
@@ -104,15 +109,15 @@ return (
         showsHorizontalScrollIndicator={false}
       />
     </AreaEstabelecimentos>
-    <AreaProfissionais>
+    {/* <AreaProfissionais>
       <Titulo>Profissionais populares</Titulo>
-      {/* <ListaAgenda
+      <ListaAgenda
         data={listaEstabelecimentos}
         renderItem={renderItemProfissinal}
         horizontal
         showsHorizontalScrollIndicator={false}
-      /> */}
-    </AreaProfissionais>
+      />
+    </AreaProfissionais> */}
    </Container>
   );
 }

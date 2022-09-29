@@ -26,7 +26,12 @@ return (
    <Container>
     <AreaPerfil>
       <AreaFoto>
-        <FotoUsuario source={{uri: 'https://i.pravatar.cc/'}} />
+      {userState.imgPerfil_base64 ? (
+        <FotoUsuario source={{uri: userState.imgPerfil_base64}} />
+      )
+    : (
+        <FotoUsuario source={require('../../../../assets/no-profile-icon.png')} />
+    )}
         <TouchPerfil>
           <Icon name='picture' size={24} color={theme.colors.white} />
         </TouchPerfil>
@@ -40,7 +45,7 @@ return (
             Usuário desde 
           </TextoData>
           <ResultData>
-             {` `}20/07/2022
+             {` ${userState.dataCadastro}`}
           </ResultData>
         </AreaData>
       </AreaNomeData>

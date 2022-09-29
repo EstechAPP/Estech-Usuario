@@ -12,7 +12,7 @@ export interface IEmpresa{
     uf: string;
     cep: string;
     logoEmp: string;
-    CapaEmp: string;
+    capaEmp: string;
     latitude: string;
     longitude: string;
     horasFuncionamentoInicio: string;

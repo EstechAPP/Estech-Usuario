@@ -12,6 +12,7 @@ const Default_Value = {
         uf: "",
         cidade: "",
         imgPerfil_base64: "",
+        dataCadastro: "",
         tipos_Usuarioid: 0,
         donoEmpresa: 0,
         funcionarioEmpresa: 0
