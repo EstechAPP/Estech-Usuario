@@ -70,6 +70,7 @@ export function TelaEstabelecimento({route}){
         }
     }
 
+
     useEffect(() => {
         axios.all([requisicaoum, requisicaodois, requisicaoTres])
         .then(
@@ -117,7 +118,7 @@ return (
         <ListaProfissionais
         data={listaFuncionarios}
         renderItem={({item}) => 
-            <CardProfissional data={item}/>
+            <CardProfissional data={item} />
         }
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -134,7 +135,7 @@ return (
         <ListaServicos
         data={listaServicos}
         renderItem={({item}) => 
-            <CardServicos data={item} />
+            <CardServicos data={item} dadosEmpresa={dadosEmpresa} />
         }
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{alignItems: 'center'}}

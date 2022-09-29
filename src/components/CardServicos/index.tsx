@@ -1,6 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-import { IServico } from '../../types/servico';
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { IEmpresa } from "../../types/empresa";
+import { IServico } from "../../types/servico";
 
 import {
  Container,
@@ -25,15 +26,18 @@ return (
             {data.descricao}
         </TextoNome>
         <AreaMediaPreco>
-            <TextoDuracao>
-                Duração média do serviço: {data.tempomedio}
-            </TextoDuracao>
-            <TextoPreco>
-                {data.preco.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
-            </TextoPreco>
+          <TextoDuracao>
+            Duração média do serviço: {data.tempomedio}
+          </TextoDuracao>
+          <TextoPreco>
+            {data.preco.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            })}
+          </TextoPreco>
         </AreaMediaPreco>
-    </AreaNomePreco>
-   </Container>
+      </AreaNomePreco>
+    </Container>
   );
 }
 

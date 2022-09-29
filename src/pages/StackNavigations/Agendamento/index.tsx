@@ -1,9 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, {useEffect}from 'react';
 import { Calendar } from 'react-native-calendars';
 import { CardProfissional } from '../../../components/CardProfissional';
 import { CardServicoPreview, CardServicos } from '../../../components/CardServicos';
 import PrimaryButton from '../../../components/PrimaryButton';
+import { API } from '../../../services/api';
+import { IEmpresa } from '../../../types/empresa';
 import { Titulo } from '../TelaEstabelecimento/styles';
 
 import {
@@ -39,7 +41,7 @@ return (
    <Container>
     <AreaTituloTela>
       <TituloAgendamento>Agendamento</TituloAgendamento>
-      <TituloEstabelecimento>Hugo Barbearia</TituloEstabelecimento>
+      <TituloEstabelecimento>{dadosEmpresa.nomefantasia}</TituloEstabelecimento>
     </AreaTituloTela>
     <AreaBranca>
       <AreaServico>

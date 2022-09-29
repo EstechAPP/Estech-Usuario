@@ -15,3 +15,4 @@ export async function getEmpresasCEP(cep: string) : Promise<AxiosResponse<IEmpre
 export async function getFuncionariosEmpresa(idEmpresa: number) : Promise<AxiosResponse<IUserData>> {
     return await API.get<IUserData>(`api/Empresa/buscaFuncionariosEmpresa?idEmpresa=${idEmpresa}`)
 }
+
