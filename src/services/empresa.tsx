@@ -16,3 +16,7 @@ export async function getFuncionariosEmpresa(idEmpresa: number) : Promise<AxiosR
     return await API.get<IUserData>(`api/Empresa/buscaFuncionariosEmpresa?idEmpresa=${idEmpresa}`)
 }
 
+export async function getProfissionaisDoServico(idServico: number) : Promise<AxiosResponse<IUserData>> {
+    return await API.get<IUserData>(`/api/Servicos/BuscaProfissionaisServico?idServico=${idServico}`)
+}
+

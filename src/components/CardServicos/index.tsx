@@ -14,12 +14,12 @@ import {
  ContainerView,
 } from './styles';
 
-export function CardServicos({data} : {data : IServico}){
+export function CardServicos({data, dadosEmpresa} : {data : IServico, dadosEmpresa : IEmpresa}){
 
     const navigation = useNavigation();
 
 return (
-   <Container onPress={() => navigation.navigate('Agendamento', {servico: data})} >
+   <Container onPress={() => navigation.navigate('Agendamento', {servico: data, dadosEmpresa: dadosEmpresa})} >
     <ImagemServico source={require("../../../assets/fotobarbearia.png")} />
     <AreaNomePreco>
         <TextoNome numberOfLines={2}>
