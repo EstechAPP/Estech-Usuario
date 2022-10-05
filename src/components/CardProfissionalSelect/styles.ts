@@ -6,16 +6,16 @@ import { RFValue } from 'react-native-responsive-fontsize';
 export const Container = styled.TouchableOpacity`
    width: 184px;
    height: 47px;
-   background-color: ${({theme}) => theme.colors.background_cards};
+   background-color: ${({theme, selected}) => selected ? theme.colors.select_tab : theme.colors.background_cards};
    flex-direction: row;
    justify-content: space-between;
    align-items: center;
    border-radius: 4px;
-   margin-left: 24px;
+   margin-left:  ${({index}) => index ? 24 : 0}px;
    padding-top: 6px;
    padding-bottom: 6px;
    padding-left: 16px;
-   padding-right: 49px;
+   padding-right: 16px;
 `;
 
 export const FotoProfissional = styled.Image<ImageProps>`
@@ -23,12 +23,13 @@ export const FotoProfissional = styled.Image<ImageProps>`
     width: 35px;
     height: 35px;
     border-radius: 17.5px;
+    margin-right: 5%;
     
 
 `;
 export const AreaNomeCargo = styled.View`
 
-
+    width: 75%;
 
 `;
 export const NomeProfissional = styled.Text`
@@ -36,7 +37,8 @@ export const NomeProfissional = styled.Text`
     font-family: 'Manrope';
     font-size: ${RFValue(10)}px;
     font-weight: bold;
-    color: ${({theme}) => theme.colors.cinza_titulo};
+
+    color: ${({theme, selected}) => selected ? theme.colors.white : theme.colors.cinza_titulo};
 
 `;
 export const CargoProfissional = styled.Text`
@@ -44,6 +46,7 @@ export const CargoProfissional = styled.Text`
     font-family: 'Manrope';
     font-size: ${RFValue(10)}px;
     font-weight: bold;
+    text-align: left;
     color: ${({theme}) => theme.colors.cinza_secundario};
 
 `;

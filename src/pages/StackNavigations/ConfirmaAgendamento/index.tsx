@@ -1,9 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
+import moment from 'moment';
 import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
 import { CardProfissional } from '../../../components/CardProfissional';
-import { CardServicos } from '../../../components/CardServicos';
+import { CardServicoPreview } from '../../../components/CardServicos';
 import PrimaryButton from '../../../components/PrimaryButton';
+import { IConfirmaAgendamento } from '../../../types/agenda';
 
 import {
  Container,
@@ -21,10 +23,12 @@ import {
 
 } from './styles';
 
-export function ConfirmaAgendamento(){
+export function ConfirmaAgendamento({route}){
     const navigation = useNavigation();
     const theme = useTheme();
     const [loading, setLoading] = useState(false);
+
+    const {dadosAgendamento} : {dadosAgendamento : IConfirmaAgendamento} = route.params;
 
     function ConfirmaAgenda(){
         setLoading(true);
@@ -40,24 +44,26 @@ return (
    <Container>
     <AreaTitulo>
         <TextoDetalhes>Detalhes do agendamento</TextoDetalhes>
-        <TextoEstabelecimento>Hugo Barbearia</TextoEstabelecimento>
+        <TextoEstabelecimento>{dadosAgendamento.dadosEmpresa.nomefantasia}</TextoEstabelecimento>
     </AreaTitulo>
     <AreaBranca>
         <AreaPartes>
             <TextoParte>Profissional</TextoParte>
-            <CardProfissional/>
+            <CardProfissional data={dadosAgendamento.profissionalSelected} />
         </AreaPartes>
         <AreaPartes>
             <TextoParte>Serviço</TextoParte>
-            <CardServicos/>
+            <CardServicoPreview data={dadosAgendamento.servico} />
         </AreaPartes>
         <AreaPartes>
             <TextoParte>Data do agendamento</TextoParte>
-            <TextoResultado>20 de agosto de 2022 (Terça-feira)</TextoResultado>
+            <TextoResultado>
+            {moment(dadosAgendamento.dataAgendamento).format('LL')}
+            </TextoResultado>
         </AreaPartes>
         <AreaPartes>
             <TextoParte>Horário</TextoParte>
-            <TextoResultado>12:30</TextoResultado>
+            <TextoResultado>{moment(dadosAgendamento.dataAgendamento).format('HH:mm')}</TextoResultado>
         </AreaPartes>
         <AreaButton>
             {loading ? 

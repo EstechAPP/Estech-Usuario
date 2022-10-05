@@ -6,17 +6,16 @@ import {
  FotoProfissional,
  AreaNomeCargo,
  NomeProfissional,
- Overlay,
  } from './styles';
 
-export function CardProfissionalSelect({data, selected, onPress} : {data : IUser}){
+export function CardProfissionalSelect({data, selected, onPress, index} : {data : IUser}){
+
 return (
-   <Container onPress={onPress} >
-        <FotoProfissional source={require("../../../assets/fotobarbearia.png")}  />
+   <Container onPress={onPress} selected={selected} index={index} >
+        <FotoProfissional source={data.imgPerfil_base64 ? {uri: data.imgPerfil_base64} : require('../../../assets/fotobarbearia.png')}  />
         <AreaNomeCargo>
-            <NomeProfissional>{data.nome} {data.sobrenome}</NomeProfissional>
+            <NomeProfissional selected={selected}>{data.nome} {data.sobrenome}</NomeProfissional>
         </AreaNomeCargo>
-        {selected && <Overlay/>}
    </Container>
   );
 }

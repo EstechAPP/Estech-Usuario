@@ -1,3 +1,7 @@
+import { IEmpresa } from "./empresa";
+import { IServico } from "./servico";
+import { IUser } from "./user";
+
 export interface IAgendamento{
     id: number;
     dataAgendamento: Date;
@@ -20,4 +24,11 @@ export interface IDataAgendamento{
     status: boolean;
     resultado: IAgendamento[];
     mensagem: string;
+}
+
+export interface IConfirmaAgendamento{
+    dadosEmpresa: IEmpresa;
+    profissionalSelected: IUser;
+    servico: IServico;
+    dataAgendamento: string;
 }

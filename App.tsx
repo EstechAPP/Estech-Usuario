@@ -5,7 +5,9 @@ import theme from './src/styles/theme';
 import RoutesNavigator from './src/routes/RoutesNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import GlobalContext from './src/context';
+
 import moment from 'moment';
+import 'moment/min/locales';
 
 
 

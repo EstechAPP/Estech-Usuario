@@ -133,18 +133,24 @@ export const ViewHorario = styled.TouchableOpacity`
    align-items: center;
    border-radius: 10px;
    border-width: 1px;
-   border-color: ${({theme}) => theme.colors.cinza_secundario};
+   border-color: ${({theme, selected}) => selected ? theme.colors.white : theme.colors.cinza_secundario};
    margin-left: 21px;
    margin-bottom: ${hp('5%')}px;
-
+   background-color: ${({theme, selected}) => selected ? theme.colors.select_tab : theme.colors.white};
 
 `;
 export const TextoHorario = styled.Text`
 
-   color: ${({theme}) => theme.colors.black};
+   color: ${({theme, selected}) => selected ? theme.colors.white : theme.colors.black};
    font-size: ${RFValue(14)}px;
    font-weight: bold;
    font-family: 'Manrope';
 
 
+`;
+
+export const Avisos = styled(TituloAgendamento)`
+
+   color: ${({theme}) => theme.colors.black};
+   text-align: center;
 `;
