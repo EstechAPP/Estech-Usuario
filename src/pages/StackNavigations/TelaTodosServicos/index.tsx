@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CardServicos } from '../../../components/CardServicos';
 import { CustomInput } from '../../../components/CustomInput';
+import { getServicosEmpresa } from '../../../services/servicos';
+import { IEmpresa } from '../../../types/empresa';
+import { IServico } from '../../../types/servico';
 
 import {
  Container,
@@ -15,8 +18,23 @@ import {
 
 } from './styles';
 
-export function TelaTodosServicos(){
-  const dados = [ 1,2,3,4,5,6,7,8,9,10]
+export function TelaTodosServicos({route}){
+    const {dadosEmpresa} : {dadosEmpresa : IEmpresa} = route.params;
+    const [servicos, setServicos] = useState<IServico[]>([])
+
+
+  useEffect(() => {
+
+    getServicosEmpresa(dadosEmpresa.id)
+    .then(response => {
+      setServicos(response.data.resultado)
+    })
+    .catch(err => {
+
+    })
+  
+  }, [])
+  
 
 return (
    <Container>
@@ -24,17 +42,17 @@ return (
       <TextoTitulo>Todos serviços</TextoTitulo>
     </AreaTitulo>
     <AreaBranca>
-      <CustomInput style={{marginTop: 12}} placeholder="Pesquise nome do serviço" />
+      <CustomInput style={{marginTop: 12}} placeholder="Pesquise nome do serviço"  />
       <AreaTituloServico>
         <TextoServico>Serviços</TextoServico>
-        <TextoTotal>Total de 12 serviços</TextoTotal>
+        <TextoTotal>Total de {servicos.length} {servicos.length > 1 ? "serviços" : "serviço" }</TextoTotal>
       </AreaTituloServico>
       <ListaServicos
-        data={dados}
+        data={servicos}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{alignItems: 'center'}}
-        renderItem={() => 
-          <CardServicos />
+        renderItem={({item}) => 
+          <CardServicos data={item} dadosEmpresa={dadosEmpresa} />
         }
       />
 

@@ -1,7 +1,9 @@
+import { FlatListProps } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import styled from 'styled-components/native';
+import { IAgendamento } from '../../../types/agenda';
 
 export const Container = styled.View`
    flex: 1;
@@ -24,7 +26,7 @@ export const Titulo = styled.Text`
    font-family: 'Manrope';
 
 `;
-export const ListaAgenda = styled.FlatList`
+export const ListaAgenda = styled.FlatList<FlatListProps<IAgendamento>>`
 
 
 

@@ -1,10 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTheme } from 'styled-components';
 import { CardProfissional } from '../../../components/CardProfissional';
 import { CardServicoPreview } from '../../../components/CardServicos';
 import PrimaryButton from '../../../components/PrimaryButton';
+import AuthContext from '../../../context/user';
+import { criarAgendamento } from '../../../services/agenda';
 import { IConfirmaAgendamento } from '../../../types/agenda';
 
 import {
@@ -26,16 +28,34 @@ import {
 export function ConfirmaAgendamento({route}){
     const navigation = useNavigation();
     const theme = useTheme();
+    const {userState} = useContext(AuthContext)
     const [loading, setLoading] = useState(false);
 
     const {dadosAgendamento} : {dadosAgendamento : IConfirmaAgendamento} = route.params;
 
     function ConfirmaAgenda(){
         setLoading(true);
-        setTimeout(() => {
-            navigation.navigate('FimAgendamento');
+        criarAgendamento(
+            dadosAgendamento.dataAgendamento,
+            dadosAgendamento.servico.tempomedio,
+            userState.id,
+            dadosAgendamento.profissionalSelected.id,
+            dadosAgendamento.dadosEmpresa.id,
+            dadosAgendamento.servico.id
+        ).then(response => {
+            console.log(response.data)
             setLoading(false);
-        }, 2000);
+            navigation.reset({
+                index: 0,
+                routes:[{name: 'FimAgendamento'}]
+            })
+        })
+        .catch(err => {
+            console.error(err.response)
+            setLoading(false);
+        })
+
+       
     }
 
 
@@ -49,7 +69,7 @@ return (
     <AreaBranca>
         <AreaPartes>
             <TextoParte>Profissional</TextoParte>
-            <CardProfissional data={dadosAgendamento.profissionalSelected} />
+            <CardProfissional index={0} data={dadosAgendamento.profissionalSelected} />
         </AreaPartes>
         <AreaPartes>
             <TextoParte>Serviço</TextoParte>
@@ -63,7 +83,7 @@ return (
         </AreaPartes>
         <AreaPartes>
             <TextoParte>Horário</TextoParte>
-            <TextoResultado>{moment(dadosAgendamento.dataAgendamento).format('HH:mm')}</TextoResultado>
+            <TextoResultado>{moment.parseZone(dadosAgendamento.dataAgendamento).local().format("HH:mm")}</TextoResultado>
         </AreaPartes>
         <AreaButton>
             {loading ? 

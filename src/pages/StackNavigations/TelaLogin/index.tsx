@@ -29,11 +29,14 @@ import { useNavigation } from "@react-navigation/native";
 import { Login } from "../../../services/auth";
 import AuthContext from "../../../context/user";
 import { Alert } from "react-native";
+import Spinner from "react-native-loading-spinner-overlay/lib";
+import { SpinnerLoading } from "../../../components/SpinnerLoading";
 
 export default function TelaLogin() {
 
   const [email, setEmail] = useState('teste@teste.com');
   const [senha, setSenha] = useState('123123');
+  const [visible, setVisible] = useState(false);
   const {userState,setUserState} = useContext(AuthContext);
 
   function EfetuarLogin(){
@@ -41,17 +44,20 @@ export default function TelaLogin() {
       Alert.alert('Necessário o preenchimento dos campos de email e senha para realizar o login')
     }
     else{
+      setVisible(true);
       Login(email, senha)
       .then(response =>{
         setUserState(response.data.usuario);
         setEmail('');
         setSenha('');
+        setVisible(false);
         navigation.reset({
           index: 0,
           routes:[{name: 'TabNavigation'}]
       })
       })
       .catch(err => {
+        setVisible(false);
         if(err.response){
           if(err.response.status === 401)
               Alert.alert('Login ou senha incorretos, verifique suas credenciais e tente novamente.')
@@ -70,6 +76,9 @@ export default function TelaLogin() {
 
   return (
     <Container>
+      <Spinner visible={visible} customIndicator={(
+        <SpinnerLoading titulo='Validando suas credenciais...' />
+      )}  />
       <ViewTitulo>
         <TextoTitulo>Fazer login</TextoTitulo>
       </ViewTitulo>

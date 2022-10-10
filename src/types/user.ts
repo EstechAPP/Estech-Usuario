@@ -7,7 +7,7 @@ export interface IUser{
     cep: string;
     uf: string;
     cidade: string;
-    imgPerfil_base64: string;
+    foto_base64: string;
     dataCadastro: string;
     tipos_Usuarioid: number;
     donoEmpresa: number;
@@ -23,5 +23,6 @@ export interface IUserData{
 export interface IUserContextProps{
     userState: IUser;
     setUserState: React.Dispatch<React.SetStateAction<IUser>>;
+    logout: () => void;
 }
 

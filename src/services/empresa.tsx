@@ -20,3 +20,11 @@ export async function getProfissionaisDoServico(idServico: number) : Promise<Axi
     return await API.get<IUserData>(`/api/Servicos/BuscaProfissionaisServico?idServico=${idServico}`)
 }
 
+export async function getEmpresasNome(nomeEmpresa: string) : Promise<AxiosResponse<IEmpresaData>> {
+    return await API.get<IEmpresaData>(`/api/Empresa/buscaEmpresasNome?descricao=${nomeEmpresa}`)
+}
+
+export async function getEmpresasCategoria(idCategoria: number) : Promise<AxiosResponse<IEmpresaData>> {
+    return await API.get<IEmpresaData>(`/api/Empresa/getEmpresasCategoria?idCategoria=${idCategoria}`)
+}
+

@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, {createContext, useState} from "react";
 import { IUserContextProps } from "../../types/user";
 
@@ -17,7 +18,8 @@ const Default_Value = {
         donoEmpresa: 0,
         funcionarioEmpresa: 0
     },
-    setUserState: () => {}
+    setUserState: () => {},
+    logout: () => {}
 };
 
 export const AuthContext = createContext<IUserContextProps>(Default_Value);
@@ -31,9 +33,16 @@ export const AuthContext = createContext<IUserContextProps>(Default_Value);
 
 
 const AuthContextProvider : React.FC = ({ children }) => {
+    const navigation = useNavigation();
     const [userState, setUserState] = useState(Default_Value.userState);
+
+    function logout(){
+        setUserState(Default_Value.userState);
+        navigation.reset({index: 0, routes: [{name: 'TelaLogin'}]})
+    }
+
     return(
-        <AuthContext.Provider value={{userState, setUserState}}>
+        <AuthContext.Provider value={{userState, setUserState, logout}}>
             {children}
         </AuthContext.Provider>
     )

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const API = axios.create({
-    baseURL: "http://estechtestes-001-site1.ctempurl.com/"
+    baseURL: "http://services.estech.kinghost.net/"
 })
 
 export const APIViaCEP = axios.create({

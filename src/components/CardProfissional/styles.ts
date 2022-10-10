@@ -11,11 +11,11 @@ export const Container = styled.View`
    justify-content: space-between;
    align-items: center;
    border-radius: 4px;
-   margin-left: 24px;
+   margin-left: ${({index}) => index == 0 ? 0 : 24 }px;
    padding-top: 6px;
    padding-bottom: 6px;
    padding-left: 16px;
-   padding-right: 49px;
+   padding-right: 16px;
 `;
 
 export const FotoProfissional = styled.Image<ImageProps>`
@@ -23,12 +23,13 @@ export const FotoProfissional = styled.Image<ImageProps>`
     width: 35px;
     height: 35px;
     border-radius: 17.5px;
+    margin-right: 5%;
     
 
 `;
 export const AreaNomeCargo = styled.View`
 
-
+    width: 75%;
 
 `;
 export const NomeProfissional = styled.Text`

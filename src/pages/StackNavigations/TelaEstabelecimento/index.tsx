@@ -36,6 +36,8 @@ import { IEmpresa } from '../../../types/empresa';
 import moment from 'moment';
 import { useTheme } from 'styled-components';
 import { IUser } from '../../../types/user';
+import Spinner from 'react-native-loading-spinner-overlay/lib';
+import { SpinnerLoading } from '../../../components/SpinnerLoading';
 
 export function TelaEstabelecimento({route}){
 
@@ -48,6 +50,7 @@ export function TelaEstabelecimento({route}){
     const requisicaodois = getServicosEmpresa(idEmpresa);
     const requisicaoTres = getFuncionariosEmpresa(idEmpresa);
 
+    const [visible, setVisible] = useState(false);
     const [dadosEmpresa, setDadosEmpresa] = useState<IEmpresa>();
     const [listaServicos, setListaServicos] = useState<IServico[]>([]);
     const [listaFuncionarios, setListaFuncionarios] = useState<IUser[]>([]);
@@ -72,24 +75,29 @@ export function TelaEstabelecimento({route}){
 
 
     useEffect(() => {
+        setVisible(true);
         axios.all([requisicaoum, requisicaodois, requisicaoTres])
         .then(
-          axios.spread((...responses) => {
+        axios.spread((...responses) => {
             const responseum = responses[0].data.resultado;
             const responsedois = responses[1].data.resultado;
             const responsetres = responses[2].data.resultado;
             setDadosEmpresa(responseum)
             setListaServicos(responsedois)
             setListaFuncionarios(responsetres)
-          })
-        )
+            setVisible(false);
+        }))
         .catch(errors => {
-          console.error(errors);
+            console.error(errors);
+            setVisible(false);
         })
     }, [])
 
 return (
    <Container>
+    <Spinner visible={visible} customIndicator={(
+       <SpinnerLoading titulo='Carregando...' />
+    )}  />
     <BackgroundEstabelecimento source={{uri: dadosEmpresa?.capaEmp}}/>
     <Header>
         <FotoEstabelecimento source={{uri: dadosEmpresa?.logoEmp}}/>
@@ -128,7 +136,7 @@ return (
     <AreaServicos>
         <AreaTituloVerTudo>
             <Titulo>Serviços populares</Titulo>
-            <TouchVerTudo onPress={() => navigation.navigate('TelaTodosServicos')} >
+            <TouchVerTudo onPress={() => navigation.navigate('TelaTodosServicos', {dadosEmpresa})} >
                 <TextoVerTudo>ver tudo</TextoVerTudo>
             </TouchVerTudo>
         </AreaTituloVerTudo>

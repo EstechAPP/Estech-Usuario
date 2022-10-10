@@ -37,26 +37,7 @@ export const NomeProfissional = styled.Text`
     font-family: 'Manrope';
     font-size: ${RFValue(10)}px;
     font-weight: bold;
-
     color: ${({theme, selected}) => selected ? theme.colors.white : theme.colors.cinza_titulo};
 
 `;
-export const CargoProfissional = styled.Text`
 
-    font-family: 'Manrope';
-    font-size: ${RFValue(10)}px;
-    font-weight: bold;
-    text-align: left;
-    color: ${({theme}) => theme.colors.cinza_secundario};
-
-`;
-
-export const Overlay = styled.View`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: red;
-
-`;

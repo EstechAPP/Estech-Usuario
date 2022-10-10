@@ -30,6 +30,8 @@ export const FotoEstabelecimento = styled.Image`
     width: 94px;
     height: 94px;
     border-radius: 4px;
+    background-color: white;
+    border-radius: 5px;
 
 `;
 export const NomeEstabelecimento = styled.Text`

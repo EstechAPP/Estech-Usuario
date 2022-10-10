@@ -8,12 +8,16 @@ import GlobalContext from './src/context';
 
 import moment from 'moment';
 import 'moment/min/locales';
+import { LogBox } from 'react-native';
 
 
 
 export default function App(){
 
   moment.locale('pt-br');
+  LogBox.ignoreLogs(
+    ['Non-serializable values']
+  )
 
 return (
   <ThemeProvider theme={theme} >

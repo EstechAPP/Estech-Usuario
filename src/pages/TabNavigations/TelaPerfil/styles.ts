@@ -83,3 +83,13 @@ export const ResultData = styled.Text`
    color: ${({theme}) => theme.colors.cinza_titulo};
 
 `;
+
+export const AreaButtons = styled.View`
+
+   width: 100%;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   align-items: flex-start;
+
+`;

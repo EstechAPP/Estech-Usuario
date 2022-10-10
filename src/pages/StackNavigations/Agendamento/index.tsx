@@ -9,6 +9,7 @@ import PrimaryButton from '../../../components/PrimaryButton';
 import { getAgendamentosFuncionario } from '../../../services/agenda';
 import { getProfissionaisDoServico } from '../../../services/empresa';
 import theme from '../../../styles/theme';
+import { IConfirmaAgendamento } from '../../../types/agenda';
 import { IEmpresa } from '../../../types/empresa';
 import { IServico } from '../../../types/servico';
 import { IUser } from '../../../types/user';
@@ -172,8 +173,8 @@ export function Agendamento({route}){
   function realizarAgendamento(){
 
     const dataHorarioString = data?.dateString + "T" + horarioSelected;
-    const dataHorarioMoment = moment(dataHorarioString).format();
-
+    const dataHorarioMoment = moment(dataHorarioString).utc();
+    console.log(dataHorarioMoment)
     const dadosAgendamento : IConfirmaAgendamento = {
       dadosEmpresa,
       profissionalSelected,

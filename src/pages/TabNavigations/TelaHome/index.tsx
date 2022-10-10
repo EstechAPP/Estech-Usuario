@@ -33,16 +33,21 @@ import { ICategorias } from '../../../types/categorias';
 import axios from 'axios';
 import { getEmpresasCEP } from '../../../services/empresa';
 import { IEmpresa } from '../../../types/empresa';
+import { useNavigation } from '@react-navigation/native';
+import Spinner from 'react-native-loading-spinner-overlay/lib';
+import { SpinnerLoading } from '../../../components/SpinnerLoading';
 
 export default function TelaHome(){
 
   const theme = useTheme();
+  const navigation = useNavigation();
   const {userState} = useContext(AuthContext);
+  const [visible, setVisible] = useState(false);
   const [listaCategorias, setListaCategorias] = useState<ICategorias[]>([]);
   const [listaEstabelecimentos, setListaEstabelecimentos] = useState<IEmpresa[]>([]);
 
   const renderItem: ListRenderItem<ICategorias> = ({item, index}) => (
-    <ButtonCategoria img_base64={item.img_base64} descricao={item.descricao} onPress={() => {}} activeOpacity={0.6} index={index} />
+    <ButtonCategoria img_base64={item.img_base64} descricao={item.descricao} onPress={() => {navigation.navigate('BuscaEmpresaCategoria', {categoria: item})}} activeOpacity={0.6} index={index} />
   );
 
   const renderItemEstabelecimento: ListRenderItem<IEmpresa> = ({item, index}) => (
@@ -57,7 +62,7 @@ export default function TelaHome(){
     const requisicaodois = getEmpresasCEP(userState.cep);
 
   useEffect(() => {
-
+    setVisible(true);
     axios.all([requisicaoum, requisicaodois])
     .then(
       axios.spread((...responses) => {
@@ -65,10 +70,12 @@ export default function TelaHome(){
         const responsedois = responses[1].data.resultado;
         setListaCategorias(responseum)
         setListaEstabelecimentos(responsedois)
+        setVisible(false)
       })
-    )
-    .catch(errors => {
-      console.error(errors);
+      )
+      .catch(errors => {
+        console.error(errors);
+        setVisible(false)
     })
   },[])
 
@@ -76,14 +83,17 @@ export default function TelaHome(){
 
 return (
   <Container>
+      <Spinner visible={visible} customIndicator={(
+        <SpinnerLoading titulo='Carregando...' />
+      )}  />
      <StatusBar backgroundColor={theme.colors.background_screens} barStyle={'dark-content'} />
     <AreaHeader>
       <AreaMensagemNome>
         <TextoMensagem>Bem vindo,</TextoMensagem>
         <TextoNome numberOfLines={1} >{userState.nome} {userState.sobrenome}</TextoNome>
       </AreaMensagemNome>
-      {userState.imgPerfil_base64 ? (
-        <FotoUsuario source={{uri: userState.imgPerfil_base64}} />
+      {userState.foto_base64 ? (
+        <FotoUsuario source={{uri: userState.foto_base64}} />
       )
     : (
         <FotoUsuario source={require('../../../../assets/no-profile-icon.png')} />

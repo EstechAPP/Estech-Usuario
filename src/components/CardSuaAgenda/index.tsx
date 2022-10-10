@@ -13,7 +13,6 @@ import {
  TextoValor,
  AreaDataAgendamento,
  TextoData,
- TextoHorario,
 } from './styles';
 
 import moment from 'moment';
@@ -22,7 +21,7 @@ import moment from 'moment';
 export function CardSuaAgenda({dados} : {dados: IAgendamento}){
 return (
    <Container>
-    <LogoEstabelecimento source={require("../../../assets/fotobarbearia.png")}  />
+    <LogoEstabelecimento source={dados.logoEmpresa ? {uri: dados.logoEmpresa} : require('../../../assets/fotobarbearia.png')}  />
     <AreaInfo>
         <AreaNome>
             <TextoNome numberOfLines={1}>{dados.nomeFantasiaEmpresa}</TextoNome>
@@ -35,13 +34,12 @@ return (
                 Total:
             </TextoPreco>
             <TextoValor>
-                R$ {dados.valorServico}
+                {dados.valorServico.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
             </TextoValor>
         </AreaPreco>
     </AreaInfo>
     <AreaDataAgendamento>
-        <TextoData>{moment(dados.dataAgendamento).format('DD/MMM')}</TextoData>
-        <TextoHorario>{moment(dados.dataAgendamento).format('HH:mm')}</TextoHorario>
+        <TextoData>{moment(dados.dataAgendamento).format('DD/MMM')} {moment(dados.dataAgendamento).format('HH:mm')}</TextoData>
     </AreaDataAgendamento>
    </Container>
   );

@@ -24,6 +24,7 @@ import { ConfirmaAgendamento } from '../pages/StackNavigations/ConfirmaAgendamen
 import { FimAgendamento } from '../pages/StackNavigations/FimAgendamento';
 import { RegistroInicial } from '../pages/StackNavigations/Registros/RegistroInicial';
 import { RegistroEndereco } from '../pages/StackNavigations/Registros/RegistroEndereco';
+import { BuscaEmpresaCategoria } from '../pages/StackNavigations/BuscaEmpresaCategoria';
 
 
 
@@ -37,7 +38,7 @@ function TabNavigation(){
       tabBarStyle:{
         backgroundColor: theme.colors.background_bege,
       },
-      tabBarActiveTintColor: theme.colors.primary_color_button,
+      tabBarActiveTintColor: theme.colors.black,
       tabBarInactiveTintColor: theme.colors.cinza_titulo,
       tabBarLabelStyle: {
         fontSize: 13
@@ -82,9 +83,11 @@ function RoutesNavigator() {
         headerTransparent: true,
         headerTitle: '',
         headerLeft: (props) => (
+          navigation.canGoBack() && (
           <TouchableOpacity style={{width: 37, height: 37, backgroundColor: '#FFF', borderRadius: 18.5, alignItems: 'center', justifyContent: 'center'}} onPress={() => {navigation.goBack()}}>
             <Icon name='chevron-left' size={RFValue(28)} />
           </TouchableOpacity>
+          )
         )
       }
       return options;
@@ -146,6 +149,11 @@ function RoutesNavigator() {
         <Stack.Screen
           name="RegistroInicial"
           component={RegistroInicial}
+          options={StackOptions()}
+        />
+        <Stack.Screen
+          name="BuscaEmpresaCategoria"
+          component={BuscaEmpresaCategoria}
           options={StackOptions()}
         />
       </Stack.Navigator>

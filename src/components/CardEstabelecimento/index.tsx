@@ -15,7 +15,7 @@ import {
  TextoHorario,
 } from './styles';
 
-import EstrelaSVG from '../../../assets/icons/estrela.svg';
+
 import DespertadorSVG from '../../../assets/icons/despertador.svg';
 import { useNavigation } from '@react-navigation/native';
 import { IEmpresaCard } from '../../types/empresa';
@@ -45,10 +45,10 @@ export function CardEstabelecimento({dados} : IEmpresaCard){
 return (
    <Container onPress={() => {navigation.navigate('TelaEstabelecimento', {idEmpresa: dados.id})}}>
     <FotoEstabelecimento source={{uri: dados.capaEmp}}>
-        <AreaPontuacao>
+        {/* <AreaPontuacao>
             <EstrelaSVG/>
             <TextoPontuacao>3.2</TextoPontuacao>
-        </AreaPontuacao>
+        </AreaPontuacao> */}
     </FotoEstabelecimento>
     <TextoNomeEstabelecimento numberOfLines={1}>{dados.nomefantasia}</TextoNomeEstabelecimento>
     <AreaStatusHora>
