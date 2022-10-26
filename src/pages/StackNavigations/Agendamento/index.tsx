@@ -174,7 +174,6 @@ export function Agendamento({route}){
 
     const dataHorarioString = data?.dateString + "T" + horarioSelected;
     const dataHorarioMoment = moment(dataHorarioString).utc();
-    console.log(dataHorarioMoment)
     const dadosAgendamento : IConfirmaAgendamento = {
       dadosEmpresa,
       profissionalSelected,

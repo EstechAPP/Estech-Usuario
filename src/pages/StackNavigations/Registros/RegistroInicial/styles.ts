@@ -50,6 +50,7 @@ export const ViewButton = styled.View`
    width: ${wp('100%')}px;
    align-items: center;
    margin-top: ${hp('2%')}px;
+   margin-bottom: ${hp('5%')}px;
    height: ${hp('9%')}px;
 
 `;

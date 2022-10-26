@@ -19,7 +19,7 @@ export default function ButtonCategoria({img_base64, descricao, ...rest} : IButt
 return (
    <Container {...rest} >
     <AreaIcone>
-        <ImagemIcone source={{uri: `data:image/png;base64,${img_base64}` }} />
+        <ImagemIcone source={{uri: img_base64 }} />
     </AreaIcone>
     <Titulo>{descricao}</Titulo>
    </Container>

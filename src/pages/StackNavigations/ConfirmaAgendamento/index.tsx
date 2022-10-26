@@ -43,7 +43,6 @@ export function ConfirmaAgendamento({route}){
             dadosAgendamento.dadosEmpresa.id,
             dadosAgendamento.servico.id
         ).then(response => {
-            console.log(response.data)
             setLoading(false);
             navigation.reset({
                 index: 0,

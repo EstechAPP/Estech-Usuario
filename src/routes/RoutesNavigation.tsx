@@ -23,7 +23,6 @@ import { Agendamento } from '../pages/StackNavigations/Agendamento';
 import { ConfirmaAgendamento } from '../pages/StackNavigations/ConfirmaAgendamento';
 import { FimAgendamento } from '../pages/StackNavigations/FimAgendamento';
 import { RegistroInicial } from '../pages/StackNavigations/Registros/RegistroInicial';
-import { RegistroEndereco } from '../pages/StackNavigations/Registros/RegistroEndereco';
 import { BuscaEmpresaCategoria } from '../pages/StackNavigations/BuscaEmpresaCategoria';
 
 

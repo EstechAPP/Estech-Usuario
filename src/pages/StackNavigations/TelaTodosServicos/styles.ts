@@ -1,7 +1,9 @@
+import { FlatList } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import styled from 'styled-components/native';
+import { IServico } from '../../../types/servico';
 
 
 export const Container = styled.View`
@@ -60,7 +62,7 @@ export const TextoTotal = styled.Text`
    font-family: 'Manrope';
 
 `;
-export const ListaServicos = styled.FlatList`
+export const ListaServicos = styled(FlatList as new () => FlatList<IServico>)`
 
    width: ${wp('100%')}px;
    margin-top: ${hp('2%')}px;

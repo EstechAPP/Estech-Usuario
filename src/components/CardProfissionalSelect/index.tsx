@@ -9,7 +9,7 @@ import {
  } from './styles';
 
 export function CardProfissionalSelect({data, selected, onPress, index} : {data : IUser}){
-console.log(data)
+
 return (
    <Container onPress={onPress} selected={selected} index={index} >
         <FotoProfissional source={data.foto_base64 ? {uri: data.foto_base64} : require('../../../assets/fotobarbearia.png')}  />

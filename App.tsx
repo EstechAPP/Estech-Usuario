@@ -10,8 +10,6 @@ import moment from 'moment';
 import 'moment/min/locales';
 import { LogBox } from 'react-native';
 
-
-
 export default function App(){
 
   moment.locale('pt-br');

@@ -1,9 +1,6 @@
 import React, { useContext, useState } from "react";
 import { CustomInput } from "../../../components/CustomInput";
 import PrimaryButton from "../../../components/PrimaryButton";
-import FacebookSVG from '../../../../assets/icons/facebook.svg';
-import GoogleSVG from '../../../../assets/icons/google.svg';
-import AppleSVG from '../../../../assets/icons/apple.svg';
 
 import {
   Container,
@@ -14,12 +11,6 @@ import {
   AreaEsqueceuSenha,
   TouchSenha,
   TextoSenha,
-  AreaLoginSocial,
-  Divisoria,
-  Divisa,
-  TextoDivisa,
-  AreaBotoesSociais,
-  ContainerBotao,
   AreaRegistrar,
   TextoRegistrar,
   TextoRegistro,

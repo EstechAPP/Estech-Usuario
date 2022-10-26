@@ -25,6 +25,6 @@ export async function getEmpresasNome(nomeEmpresa: string) : Promise<AxiosRespon
 }
 
 export async function getEmpresasCategoria(idCategoria: number) : Promise<AxiosResponse<IEmpresaData>> {
-    return await API.get<IEmpresaData>(`/api/Empresa/getEmpresasCategoria?idCategoria=${idCategoria}`)
+    return await API.get<IEmpresaData>(`/api/tiposcategoria/getEmpresasCategoria?idCategoria=${idCategoria}`)
 }
 
