@@ -36,6 +36,7 @@ import { IEmpresa } from '../../../types/empresa';
 import { useNavigation } from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 import { SpinnerLoading } from '../../../components/SpinnerLoading';
+import { getAguardandoFeedback } from '../../../services/agenda';
 
 export default function TelaHome(){
 
@@ -61,15 +62,30 @@ export default function TelaHome(){
     const requisicaoum = getCategorias();
     const requisicaodois = getEmpresasCEP(userState.cep);
 
+
+    function verificaFeedback(){
+      getAguardandoFeedback(userState.id)
+      .then(response => {
+        if(response.data.resultado.length > 0){
+          navigation.navigate('ModalFeedback', {dados: response.data.resultado})
+        }
+      })
+      .catch(err => {
+
+      })
+    }
+
+
   useEffect(() => {
+    verificaFeedback();
     setVisible(true);
     axios.all([requisicaoum, requisicaodois])
     .then(
       axios.spread((...responses) => {
         const responseum = responses[0].data.resultado;
         const responsedois = responses[1].data.resultado;
-        setListaCategorias(responseum)
-        setListaEstabelecimentos(responsedois)
+        setListaCategorias(responseum);
+        setListaEstabelecimentos(responsedois);
         setVisible(false)
       })
       )

@@ -89,21 +89,21 @@ export function Agendamento({route}){
 
   const [dados, setDados] = useState();
   const [data, setData] = useState<DateData>();
-  const [profissionalSelected, setProfissionalSelected] = useState<IUser>({});
+  const [profissionalSelected, setProfissionalSelected] = useState<IUser>();
   const [horariosBase, setHorariosBase] = useState([]);
   const [horarioSelected, setHorarioSelected] = useState<string>("");
 
 
-  const getSelected = contact => profissionalSelected == contact;  
+  const getSelected = contact => profissionalSelected == contact;
   const getHorarioSelected = horario => horarioSelected == horario;
 
   useEffect(() => {
-    if(data && profissionalSelected){
+    if(data && profissionalSelected != undefined){
       timelineLabels()
     }
-  
+
   }, [data, profissionalSelected])
-  
+
 
   useEffect(() => {
     getProfissionaisDoServico(servico.id)
@@ -111,7 +111,7 @@ export function Agendamento({route}){
       setDados(response.data.resultado)
     })
     .catch((err) => {
-      
+
     })
   }, [])
 
@@ -129,7 +129,7 @@ export function Agendamento({route}){
     const periodsEndInADay = moment.duration(dadosEmpresa.horasFuncionamentoFim).asMinutes();
     const periodInaDay = periodsEndInADay - periodsStartInADay;
     const timeLabels : string[] = [];
-  
+
     const startTimeMoment = moment(dadosEmpresa.horasFuncionamentoInicio, 'HH:mm');
 
     for (let i = 0; i <= periodInaDay; i += 15) {
@@ -159,6 +159,7 @@ export function Agendamento({route}){
         }
        }
 
+
       })
       setHorariosBase(timeLabels);
 
@@ -184,8 +185,8 @@ export function Agendamento({route}){
     navigation.navigate('ConfirmaAgendamento', {dadosAgendamento})
 
   }
-  
-  
+
+
 
 
 return (
@@ -204,7 +205,7 @@ return (
         <ListaProfissionais
           data={dados}
           horizontal
-          renderItem={({item, index}) => 
+          renderItem={({item, index}) =>
             <CardProfissionalSelect data={item} index={index} selected={getSelected(item)} onPress={() => setProfissionalSelected(item)} />
           }
           horizontal
@@ -232,7 +233,7 @@ return (
               data={horariosBase}
               horizontal
               showsHorizontalScrollIndicator={false}
-              renderItem={({item}) => 
+              renderItem={({item}) =>
                 <ViewHorario selected={getHorarioSelected(item)} onPress={() => setHorarioSelected(item)}>
                   <TextoHorario selected={getHorarioSelected(item)}>{item}</TextoHorario>
                 </ViewHorario>

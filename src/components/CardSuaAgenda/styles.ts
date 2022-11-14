@@ -1,93 +1,91 @@
 import { RFValue } from 'react-native-responsive-fontsize';
-import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-   width: ${wp('80%')}px;
-   height: 126px;
-   border-radius: 4px;
-   background-color: ${({theme}) => theme.colors.background_agenda};
-   margin-bottom: 20px;
-   justify-content: space-evenly;
+   width: 322px;
+   height: 128px;
+   background-color: ${({theme, index}) => index == 0 ? theme.colors.select_tab : theme.colors.background_bege };
    flex-direction: row;
    align-items: center;
+   justify-content: space-around;
+   border-radius: 10px;
+   margin-top: ${({index}) => index == 0 ? 0 : 10}px;
 `;
 
-export const LogoEstabelecimento = styled.Image`
-    width: 48px;
+
+export const AreaFotoCliente = styled.View`
+
+
+`;
+
+export const FotoCliente = styled.Image`
+
+    width: 51px;
     height: 48px;
-    border-radius: 24px;
+    border-radius: 48px;
+    background-color: ${({theme}) => theme.colors.white};
 
 `;
+export const AreaInformacoes = styled.View`
+
+    justify-content: space-between;
+    height: 80%;
+
+`;
+export const NomeCliente = styled.Text`
+
+    font-size: ${RFValue(11)}px;
+    font-weight: 700;
+
+`;
+export const HorarioAgendamento = styled.Text`
+
+    font-size: ${RFValue(11)}px;
+
+`;
+export const DetalhesAgendamento = styled.Text`
+
+    font-size: ${RFValue(11)}px;
+    font-weight: 700;
+    color: ${({theme}) => theme.colors.select_tab};
+    padding: 3px;
+`;
+export const CancelarAgendamento = styled.Text`
+
+    font-size: ${RFValue(11)}px;
+    font-weight: 700;
+    color: ${({theme}) => theme.colors.white};
+    padding: 3px;
+
+`;
+
+export const TouchDetalhes = styled.TouchableOpacity`
+
+    background-color: ${({theme}) => theme.colors.white};
+    border-radius: 4px;
+    width: 170px;
+    align-items: center;
+
+`;
+
+export const TouchCancelarFinalizar = styled.TouchableOpacity`
+
+    background-color: ${({theme, tipoAgenda}) =>  tipoAgenda ? theme.colors.verde_open : theme.colors.vermelho_closed};
+    border-radius: 4px;
+    width: 190px;
+    align-items: center;
+
+`;
+
 export const AreaInfo = styled.View`
 
-`;
-export const AreaNome = styled.View`
-
-    width: ${wp('55%')}px;
-
-
-`;
-export const TextoNome = styled.Text`
-
-    font-size: ${RFValue(13)}px;
-    width: ${wp('55%')}px;
-    font-weight: bold;
-    font-family: 'Manrope';
-
-`;
-export const AreaServico = styled.View`
-    width: ${wp('55%')}px;
-    height: 32px;
-
-`;
-export const TextoServico = styled.Text`
-
-    font-size: ${RFValue(10)}px;
-    font-family: 'Manrope';
-
-`;
-export const AreaPreco = styled.View`
-
+    width: 100%;
     flex-direction: row;
-    align-items: center;
 
 `;
-export const TextoPreco = styled.Text`
+export const ValorHorario = styled.Text`
 
-    font-size: ${RFValue(14)}px;
-    font-family: 'Manrope';
-
-`;
-export const TextoValor = styled.Text`
-    font-size: ${RFValue(14)}px;
-    font-weight: bold;
-    font-family: 'Manrope';
-`;
-
-export const AreaDataAgendamento = styled.View`
-
-    position: absolute;
-    align-items: center;
-    flex-direction: row;
-    bottom: 2%;
-    left: 2%;
-
-`;
-export const TextoData = styled.Text`
-
-    font-size: ${RFValue(14)}px;
-    font-family: 'Manrope';
-    font-weight: bold;
-    color: ${({theme}) => theme.colors.cinza_secundario};
-
-`;
-export const TextoHorario = styled.Text`
-
-    font-size: ${RFValue(14)}px;
-    font-family: 'Manrope';
-    font-weight: bold;
-    color: ${({theme}) => theme.colors.cinza_secundario};
-    margin-left: ${wp('1.5%')}px;
+    font-size: ${RFValue(11)}px;
+    font-weight: 700;
 
 `;

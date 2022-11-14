@@ -98,9 +98,9 @@ return (
     <Spinner visible={visible} customIndicator={(
        <SpinnerLoading titulo='Carregando...' />
     )}  />
-    <BackgroundEstabelecimento source={{uri: dadosEmpresa?.capaEmp}}/>
+    <BackgroundEstabelecimento source={{uri: dadosEmpresa?.imgCapa_fisico}}/>
     <Header>
-        <FotoEstabelecimento source={{uri: dadosEmpresa?.logoEmp}}/>
+        <FotoEstabelecimento source={{uri: dadosEmpresa?.imgLogo_fisico}}/>
         <NomeEstabelecimento>{dadosEmpresa?.nomefantasia}</NomeEstabelecimento>
         <AreaStatusHora>
 {            openClosed() ? (

@@ -3,21 +3,21 @@ import { IServico } from "./servico";
 import { IUser } from "./user";
 
 export interface IAgendamento{
-    id: number;
-    dataAgendamento: Date;
-    tempoeMedioServico: string;
-    feedback?: boolean;
-    confirmado?: boolean;
-    servicoFinalizado: boolean;
-    canceladorPor?: number;
-    cliente_id: number;
-    funcionario_id: number;
-    empresa_id: number;
-    servicos_id: number;
-    logoEmpresa?: string | undefined;
-    nomeFantasiaEmpresa: string;
-    nomeServico: string;
-    valorServico: number;
+    id: Number
+    dataAgendamento: Date,
+    tempoeMedioServico: string,
+    feedback: Number
+    confirmado: true,
+    servicoFinalizado: true,
+    canceladoPor: Number
+    cliente_id: Number
+    funcionario_id: Number
+    empresa_id: Number,
+    servicos_id: Number,
+    empresaAgenda: IEmpresa,
+    usuarioFuncionario: IUser,
+    usuarioCliente: IUser,
+    servicoAgenda: IServico
 }
 
 export interface IDataAgendamento{

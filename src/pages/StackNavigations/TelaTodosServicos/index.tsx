@@ -21,6 +21,7 @@ import {
 export function TelaTodosServicos({route}){
     const {dadosEmpresa} : {dadosEmpresa : IEmpresa} = route.params;
     const [servicos, setServicos] = useState<IServico[]>([])
+    const [pesquisa, setPesquisa] = useState("");
 
 
   useEffect(() => {
@@ -42,13 +43,13 @@ return (
       <TextoTitulo>Todos serviços</TextoTitulo>
     </AreaTitulo>
     <AreaBranca>
-      <CustomInput style={{marginTop: 12}} placeholder="Pesquise nome do serviço"  />
+      <CustomInput style={{marginTop: 12}} value={pesquisa} onChangeText={value => setPesquisa(value)} placeholder="Pesquise nome do serviço"  />
       <AreaTituloServico>
         <TextoServico>Serviços</TextoServico>
         <TextoTotal>Total de {servicos.length} {servicos.length > 1 ? "serviços" : "serviço" }</TextoTotal>
       </AreaTituloServico>
       <ListaServicos
-        data={servicos}
+        data={servicos.filter(item => item.descricao.toLowerCase().includes(pesquisa.toLowerCase()))}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{alignItems: 'center'}}
         renderItem={({item}) => 

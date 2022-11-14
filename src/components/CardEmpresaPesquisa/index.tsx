@@ -59,9 +59,9 @@ export function CardEmpresaPesquisa({ data }: { data: IEmpresa }) {
   return (
     <TouchCard onPress={() => {navigation.navigate('TelaEstabelecimento', {idEmpresa: data.id})}}>
       <Container>
-        <CapaEmpresa source={{ uri: data.capaEmp }} />
+        <CapaEmpresa source={{ uri: data.imgCapa_fisico }} />
         <Header>
-          <LogoEmpresa source={{ uri: data.logoEmp }} />
+          <LogoEmpresa source={{ uri: data.imgLogo_fisico }} />
           <NomeFantasiaEmpresa numberOfLines={2}>
             {data.nomefantasia}
           </NomeFantasiaEmpresa>

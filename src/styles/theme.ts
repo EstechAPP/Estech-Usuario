@@ -15,5 +15,9 @@ export default{
         cinza_secundario: "#A7A7A7",
         select_tab: "#EDA12E",
         black: "#000"
+    },
+    fonts: {
+        Primary_Font: 'Manrope',
+        Secondary_Font: "Montserrat"
     }
 }

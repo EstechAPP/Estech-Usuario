@@ -24,6 +24,8 @@ import { ConfirmaAgendamento } from '../pages/StackNavigations/ConfirmaAgendamen
 import { FimAgendamento } from '../pages/StackNavigations/FimAgendamento';
 import { RegistroInicial } from '../pages/StackNavigations/Registros/RegistroInicial';
 import { BuscaEmpresaCategoria } from '../pages/StackNavigations/BuscaEmpresaCategoria';
+import { ModalDetalhes } from '../components/ModalDetalhes';
+import { TelaFeedback } from '../pages/StackNavigations/TelaFeedback';
 
 
 
@@ -75,6 +77,7 @@ function TabNavigation(){
 
 
 function RoutesNavigator() {
+
     const navigation = useNavigation();
     const Stack = createNativeStackNavigator();
     function StackOptions(): NativeStackNavigationOptions{
@@ -91,7 +94,7 @@ function RoutesNavigator() {
       }
       return options;
     }
-    
+   
   
     return (
       <Stack.Navigator>
@@ -154,6 +157,18 @@ function RoutesNavigator() {
           name="BuscaEmpresaCategoria"
           component={BuscaEmpresaCategoria}
           options={StackOptions()}
+        />
+        <Stack.Screen
+          name="ModalDetalhes"
+          component={ModalDetalhes}
+          options={{
+            presentation: "modal", headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="ModalFeedback"
+          component={TelaFeedback}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     );

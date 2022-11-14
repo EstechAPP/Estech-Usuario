@@ -44,7 +44,7 @@ export function CardEstabelecimento({dados} : IEmpresaCard){
 
 return (
    <Container onPress={() => {navigation.navigate('TelaEstabelecimento', {idEmpresa: dados.id})}}>
-    <FotoEstabelecimento source={{uri: dados.capaEmp}}>
+    <FotoEstabelecimento source={{uri: dados.imgCapa_fisico}}>
         {/* <AreaPontuacao>
             <EstrelaSVG/>
             <TextoPontuacao>3.2</TextoPontuacao>

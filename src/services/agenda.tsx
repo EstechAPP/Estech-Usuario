@@ -26,3 +26,22 @@ export async function criarAgendamento(dataAgendamento: string, tempoeMedioServi
         servicos_id: servicoID
     })
 }
+
+export async function postCancelarAgendamento(idAgendamento: Number, canceladorPor: Number): Promise<AxiosResponse<IDataAgendamento>>{
+    return await API.post<IDataAgendamento>('/api/Agenda/cancelarAgendamento', {
+        idAgendamento,
+        canceladorPor
+    })
+}
+
+export async function getAguardandoFeedback(idCliente: Number) : Promise<AxiosResponse<IDataAgendamento>> {
+    return await API.get <IDataAgendamento>(`api/Agenda/getAguardandoFeedbackCliente?idCliente=${idCliente}`);
+}
+
+export async function putEnviaFeedbackAtendimento(idAgendamento: Number, feedbackInformado: Boolean, feedback: Number) : Promise<AxiosResponse<IDataAgendamento>>{
+    return await API.put('api/Agenda/putEnviaFeedbackAtendimento', {
+        idAgendamento,
+        feedbackInformado,
+        feedback
+    })
+}

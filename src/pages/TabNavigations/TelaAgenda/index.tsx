@@ -24,10 +24,14 @@ export default function TelaAgenda(){
   const theme = useTheme();
 
   const renderAgenda: ListRenderItem<IAgendamento> = ({item, index}) => (
-    <CardSuaAgenda dados={item} />
+    <CardSuaAgenda item={item} index={index} idUsuario={userState.id} attlista={atualizaAgenda}  />
   );
 
   useEffect(() => {
+    atualizaAgenda();
+  }, [])
+
+  function atualizaAgenda(){
     setRefreshing(true);
     getAgendamentosUsuario(userState.id)
     .then(async response => {
@@ -38,7 +42,7 @@ export default function TelaAgenda(){
       console.error(err.response.data)
       setRefreshing(false);
     })
-  }, [])
+  }
 
 return (
    <Container>

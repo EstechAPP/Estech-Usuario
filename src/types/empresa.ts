@@ -11,8 +11,8 @@ export interface IEmpresa{
     cidade: string;
     uf: string;
     cep: string;
-    logoEmp: string;
-    capaEmp: string;
+    imgLogo_fisico: string;
+    imgCapa_fisico: string;
     latitude: string;
     longitude: string;
     horasFuncionamentoInicio: string;
