@@ -44,7 +44,7 @@ export function CardEstabelecimento({dados} : IEmpresaCard){
 
 return (
    <Container onPress={() => {navigation.navigate('TelaEstabelecimento', {idEmpresa: dados.id})}}>
-    <FotoEstabelecimento source={{uri: dados.imgCapa_fisico}}>
+    <FotoEstabelecimento source={ dados.imgCapa_fisico ? {uri: dados.imgCapa_fisico} : require('../../../assets/Image_not_available.png')}>
         {/* <AreaPontuacao>
             <EstrelaSVG/>
             <TextoPontuacao>3.2</TextoPontuacao>

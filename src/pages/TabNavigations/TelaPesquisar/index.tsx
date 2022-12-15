@@ -42,7 +42,7 @@ return (
     contentContainerStyle={{alignItems: 'center'}}
     renderItem={({item}) => (
       <CardEmpresaPesquisa data={item}/>
-    )}
+    )} 
     />
    </Container>
   );

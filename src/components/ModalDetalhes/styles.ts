@@ -103,9 +103,25 @@ export const DadoConfirmadoFinalizado = styled.View`
    align-items: center;
 
 `;
-export const TituloConfirmadoFinalizado = styled.Text`
+
+export const AreaProfissional = styled.View`
+
+   margin-top: 30px;
+   align-items: flex-start;
+   width: 80%;
+
+`;
+export const TituloAreas = styled.Text`
 
    text-align: center;
+   margin-bottom: 10px;
+   font-size: 15px;
+   font-weight: bold;
+
+`;
+export const TituloConfirmadoFinalizado = styled.Text`
+
+  
 
 `;
 export const RespostaTituloConfirmadoFinalizado = styled.Text`

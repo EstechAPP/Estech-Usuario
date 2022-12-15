@@ -1,9 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
 import React from 'react';
+import { Text } from 'react-native';
 import Icon  from 'react-native-vector-icons/MaterialIcons';
 import theme from '../../styles/theme';
 import { IAgendamento } from '../../types/agenda';
+import { CardProfissional } from '../CardProfissional';
 import {
   AreaHeader,
   Container,
@@ -22,7 +24,9 @@ import {
   TituloConfirmadoFinalizado,
   RespostaTituloConfirmadoFinalizado,
   TextoHoraAgendamento,
-  TituloHoraAgendamento
+  TituloHoraAgendamento,
+  AreaProfissional,
+  TituloAreas
 
 } from './styles';
 
@@ -54,6 +58,21 @@ return (
         <RespostaTituloConfirmadoFinalizado>{dados.servicoFinalizado ? "Finalizado" : "Em aberto"}</RespostaTituloConfirmadoFinalizado>
       </DadoConfirmadoFinalizado>
     </AreaConfirmadoFinalizado>
+    <AreaProfissional>
+      <TituloAreas>Serviço será executado por</TituloAreas>
+      <CardProfissional data={dados.usuarioFuncionario} index={0} />
+    </AreaProfissional>
+    <AreaProfissional>
+      <TituloAreas>Informações sobre o serviço</TituloAreas>
+      <Text>Descrição: {dados.servicoAgenda.descricao}</Text>
+      <Text>Valor: {dados.servicoAgenda.preco}</Text>
+    </AreaProfissional>
+    <AreaProfissional>
+      <TituloAreas>Informações sobre a localização</TituloAreas>
+      <Text>Endereço: <Text>{dados.empresaAgenda.logradouro}, {dados.empresaAgenda.numero}</Text></Text>
+      <Text>Bairro: <Text>{dados.empresaAgenda.bairro}</Text></Text>
+      <Text>Cidade: <Text>{dados.empresaAgenda.cidade} - {dados.empresaAgenda.uf}</Text></Text>
+    </AreaProfissional>
     {/* <AreaDetalhes>
       <TituloDetalhes>Informações do serviço</TituloDetalhes>
       <AreaInfoDetalhes>

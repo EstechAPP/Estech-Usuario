@@ -75,7 +75,7 @@ export default function TelaLogin() {
       </ViewTitulo>
       <AreaLogin>
         <TextoLabel>
-          Efetue login com seu email ou rede social vinculada
+          Efetue login com seu email ou cadastre-se
         </TextoLabel>
         <CustomInput style={{ marginTop: 34 }} value={email} onChangeText={(value) => setEmail(value)} placeholder="Informe seu e-mail" />
         <CustomInput style={{ marginTop: 34 }} value={senha} onChangeText={(value) => setSenha(value)} placeholder="sua senha" secureTextEntry />

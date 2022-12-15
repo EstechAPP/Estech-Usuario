@@ -98,9 +98,9 @@ return (
     <Spinner visible={visible} customIndicator={(
        <SpinnerLoading titulo='Carregando...' />
     )}  />
-    <BackgroundEstabelecimento source={{uri: dadosEmpresa?.imgCapa_fisico}}/>
+    <BackgroundEstabelecimento source={ dadosEmpresa?.imgCapa_fisico ? {uri: dadosEmpresa?.imgCapa_fisico} : require('../../../../assets/Image_not_available.png') }/>
     <Header>
-        <FotoEstabelecimento source={{uri: dadosEmpresa?.imgLogo_fisico}}/>
+        <FotoEstabelecimento source={ dadosEmpresa?.imgLogo_fisico ? {uri: dadosEmpresa?.imgLogo_fisico} : require('../../../../assets/Image_not_available.png')}/>
         <NomeEstabelecimento>{dadosEmpresa?.nomefantasia}</NomeEstabelecimento>
         <AreaStatusHora>
 {            openClosed() ? (

@@ -61,7 +61,7 @@ export function CardEmpresaPesquisa({ data }: { data: IEmpresa }) {
       <Container>
         <CapaEmpresa source={{ uri: data.imgCapa_fisico }} />
         <Header>
-          <LogoEmpresa source={{ uri: data.imgLogo_fisico }} />
+          <LogoEmpresa source={ data.imgLogo_fisico ? { uri: data.imgLogo_fisico } : require('../../../assets/Image_not_available.png')} />
           <NomeFantasiaEmpresa numberOfLines={2}>
             {data.nomefantasia}
           </NomeFantasiaEmpresa>
